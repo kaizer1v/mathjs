@@ -49,7 +49,9 @@
 		return this;
 	}
 
-	Array.prototype.isDuplicate = function(n) {
+	
+	/* add a parameter to check whether it is existing more than once i.e. whether it has duplicates */
+	Array.prototype.hasDuplicates = function(n) {
 		var len = this.length,
 				pos = 0,
 				results = [],
