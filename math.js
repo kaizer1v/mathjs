@@ -29,6 +29,11 @@
 	Array.prototype.min = function() {
 		return this.reduce(function(a, b) { return (a < b) ? a : b; });
 	}
+	
+	/* [a, b, c].pow() = ((a^b)^c) and so on. */
+	Array.prototype.pow = function() {
+		return this.reduce(function(a, b) { return Math.pow(a, b); });
+	}
 
 	/* =============================
 	 * Set Theory
@@ -62,6 +67,7 @@
 	}
 
 
+	/* returns an array of all duplicates existing within the array */
 	Array.prototype.duplicates = function() {
 		var results = [],
 				temp = {},
@@ -79,6 +85,7 @@
 	}
 
 
+	/* returns all unique elements in the array i.e. that doesn't exist more than once. */
 	Array.prototype.uniques = function() {
 		var temp = {},
 				results = []
@@ -93,7 +100,14 @@
 		return results.sortAsc();
 	}
 
+	/* returns all types of objects containing in the array, along with its respective counts */
+	// need to complete
+	Array.prototype.getTypes = function() {
+		var results = {};
+		return this.map(function(x) { return typeof x; });
+	}
 
+	/* returns union along with duplicates of arrays passed in the parameters */
 	Array.prototype.union = function() {
 		var currArr = this
 		;
@@ -125,6 +139,7 @@
 	}
 
 
+	/* a - b = returns elements that exist a but not in b. */
 	Array.prototype.substract = function(arr) {
 		var currArr = this,
 				results
@@ -147,7 +162,26 @@
 		return biggerArr;
 	}
 
-
+	
+	/* Takes a multi-dimensional array as argument and flattens it to a single dimensional array */
+	function flattenArray(arr) {
+		return arr.reduce(function(acc, x) {
+			return acc.concat(Array.isArray(x) ? flattenArray(x) : x);
+		}, []);
+	}
+	
+	
+	// Array.prototype.getSubArrays = function() {
+		// var results = [];
+		// for(var i = 0; i != this.length; i++) {
+			// if(isArrayLike(this[i])) {
+				// results.push(this[i])
+			// }
+		// }
+		
+	// }
+	
+	
 	/*
 	Array.prototype.restrict = function(arr) {
 		var currArr = this
@@ -162,8 +196,8 @@
 			typeof obj === "object" &&
 			isFinite(obj.length) &&
 			obj.length >= 0 &&
-			obj.length == Math.floor(o.length) &&
-			o.length < Math.pow(2, 32)
+			obj.length == Math.floor(obj.length) &&
+			obj.length < Math.pow(2, 32)
 		)
 		? true
 		: false
@@ -175,6 +209,9 @@
 	 * Object Arrays
 	 * =============================
 	 */
+	Array.prototype.filterObjects = function(key, value) {
+		return this.filter(function(x) { return x[key] == value; })
+	}
 
 
 
@@ -250,12 +287,33 @@
 		}
 	}
 
-	console.log( sum(10, 15, 5) )
-
-
 	function add(a, b) {
 		return (+a + +b)
 	}
 
 	// console.log(sqrt(100))
 	})();
+	
+	
+	
+	/* =============================
+	 * Matrix Functions
+	 * =============================
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
