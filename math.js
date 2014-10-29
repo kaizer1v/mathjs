@@ -1,3 +1,76 @@
+/* =============================
+ * FUNCTION on Numbers
+ *	This works with variables whose typeof == "number"
+ * =============================
+ */
+ 
+/* An alternate way of writing the factorial function written right below */
+// Object.defineProperty(Number.prototype, "factorial", {
+	// enumerable: false,
+	// value: function() {
+		// if(this <= 1) return 1;
+		// return this * (this - 1).factorial()
+	// }
+// });
+
+/* returns factorials of the number. You can use it like so:
+ * var x = 5; console.log(x.factorial())
+ */
+Number.prototype.factorial = function() {
+	if(this <= 1) return 1;
+	return this * (this - 1).factorial();
+}
+
+/* returns all factors of the number */
+Number.prototype.factors = function() {
+	var that = this;
+	function abc() {
+		return that+1;
+	}
+	return abc()
+}
+
+/* returns true if is prime, else false */
+Number.prototype.isPrime = function() {
+	
+}
+
+Number.prototype.primeFactors = function() {
+
+}
+
+Number.prototype.sqrt = function(guess) {
+	var guess = typeof guess !== "undefined" ? guess : 1,
+			z = (this / guess),
+			m = average(z, guess)
+			tolerance = 0.0001
+	;
+	return (goodEnough(m, this)) ? m : this.sqrt(m)
+
+	function square(x) {
+		return x*x;
+	}
+	function improve(guess, x) {
+		return average(guess, (x / guess))
+	}
+	function average(x, y) {
+		return ((x + y) / 2)
+	}
+	function goodEnough(guess, x) {
+		return (abs(square(guess) - x) < tolerance) ? true : false
+	}
+	function abs(x) {
+		if(x > 0)
+			var v = x;
+		else if(x < 0)
+			var v = -1*(x)
+		else if(x == 0)
+			var v = 1
+		
+		return v;
+	}
+}
+
 /*
 	Best way to get sum of array elements
 	
@@ -191,6 +264,7 @@
 	*/
 
 	/* To check whether a function is array like */
+	/* But instead, you can actually use Array.isArray() inbuilt function */
 	function isArrayLike(obj) {
 		return (obj &&
 			typeof obj === "object" &&
@@ -220,80 +294,37 @@
 	 * =============================
 	 */
 	/* Compute Square root of a number */
-	const tolerance = 0.001;
-	const minArgs = 2;
-
-	(function(){
+	(function() {
 	"use strict";
 
-	function sqrt(x, guess) {
-		guess = typeof guess !== "undefined" ? guess : 1
-		
-		z = (x / guess)
-		m = average(z, guess)
-		
-		return (goodEnough(m, x)) ? m : sqrt(x, m)
-	}
-
-	function square(x) {
-		return x*x;
-	}
-
-	function improve(guess, x) {
-		return average(guess, (x / guess))
-	}
-
-	function average(x, y) {
-		return ((x + y) / 2)
-	}
-
-
-	function goodEnough(guess, x) {
-		return (abs(square(guess) - x) < tolerance) ? true : false
-	}
-
-	function abs(x) {
-		if(x > 0)
-			v = x;
-		else if(x < 0)
-			v = -1*(x)
-		else if(x == 0)
-			v = 1
-		
-		return v;
-	}
-
-
-
-	function sum2() {
-		// convert arguments into an array
-		var args = Array.prototype.slice.call(arguments)
-		var s = 0;
-		
-		if(args.length >= minArgs) {
-			args.forEach(function(entry, index) {
-				s += +args[index]
-			})
+		function sum2() {
+			// convert arguments into an array
+			var args = Array.prototype.slice.call(arguments)
+			var s = 0;
+			
+			if(args.length >= minArgs) {
+				args.forEach(function(entry, index) {
+					s += +args[index]
+				})
+			}
+			else
+				s = +args
+			
+			return s;
 		}
-		else
-			s = +args
-		
-		return s;
-	}
 
-	function sum() {
-		for(var i = 0; i <= arguments.length; i++) {
-			console.log(typeof arguments[i])
+		function sum() {
+			for(var i = 0; i <= arguments.length; i++) {
+				console.log(typeof arguments[i])
+			}
 		}
-	}
 
-	function add(a, b) {
-		return (+a + +b)
-	}
+		function add(a, b) {
+			return (+a + +b)
+		}
 
 	// console.log(sqrt(100))
 	})();
-	
 	
 	
 	/* =============================
