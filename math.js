@@ -331,20 +331,3 @@ Number.prototype.sqrt = function(guess) {
 	 * Matrix Functions
 	 * =============================
 	 */
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
