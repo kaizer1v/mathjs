@@ -1,3 +1,19 @@
+(function(window) {
+	var _window = window,
+			_Number = window.Number,
+			_Array = window.Array
+	;
+	
+	
+
+})(window)
+
+
+
+
+
+
+
 /* =============================
  * FUNCTION on Numbers
  *	This works with variables whose typeof == "number"
@@ -17,22 +33,20 @@
  * var x = 5; console.log(x.factorial())
  */
 Number.prototype.factorial = function() {
-	if(this <= 1) return 1;
-	return this * (this - 1).factorial();
+	if(!this.hasOwnProperty("factorial")) {						// check if Number already has a method called "factorial"
+		if(this <= 1) return 1;
+		return this * (this - 1).factorial();
+	}
 }
 
 /* returns all factors of the number */
 Number.prototype.factors = function() {
-	var that = this;
-	function abc() {
-		return that+1;
-	}
-	return abc()
+	
 }
 
 /* returns true if is prime, else false */
+/* RULE: all integers that are less than the sqrt of the number - can be its factors, else not */
 Number.prototype.isPrime = function() {
-	
 }
 
 Number.prototype.primeFactors = function() {
@@ -43,9 +57,10 @@ Number.prototype.sqrt = function(guess) {
 	var guess = typeof guess !== "undefined" ? guess : 1,
 			z = (this / guess),
 			m = average(z, guess)
-			tolerance = 0.0001
 	;
-	return (goodEnough(m, this)) ? m : this.sqrt(m)
+	const tolerance = 0.0001;
+	
+	return (goodEnough(m, this)) ? m : this.sqrt(m);
 
 	function square(x) {
 		return x*x;
@@ -63,9 +78,9 @@ Number.prototype.sqrt = function(guess) {
 		if(x > 0)
 			var v = x;
 		else if(x < 0)
-			var v = -1*(x)
+			var v = -1*(x);
 		else if(x == 0)
-			var v = 1
+			var v = 1;
 		
 		return v;
 	}
@@ -115,14 +130,38 @@ Number.prototype.sqrt = function(guess) {
 	 */
 	Array.prototype.sortAsc = function() {
 		this.sort(function(a, b) {
-			return a-b;
+			if(typeof a === "string" && typeof b === "string" && a < b) {
+				return -1;
+			}
+			if(typeof a === "string" && typeof b === "string" && a > b) {
+				return 1;
+			}
+			
+			if(typeof a === "number" && typeof b === "number" && a < b) {
+				return -1;
+			}
+			if(typeof a === "number" && typeof b === "number" && a > b) {
+				return 1;
+			}
 		})
 		return this;
 	}
 
 	Array.prototype.sortDesc = function() {
 		this.sort(function(a, b) {
-			return b-a;
+			if(typeof a === "string" && typeof b === "string" && a > b) {
+				return -1;
+			}
+			if(typeof a === "string" && typeof b === "string" && a < b) {
+				return 1;
+			}
+			
+			if(typeof a === "number" && typeof b === "number" && a > b) {
+				return -1;
+			}
+			if(typeof a === "number" && typeof b === "number" && a < b) {
+				return 1;
+			}
 		})
 		return this;
 	}
@@ -286,48 +325,3 @@ Number.prototype.sqrt = function(guess) {
 	Array.prototype.filterObjects = function(key, value) {
 		return this.filter(function(x) { return x[key] == value; })
 	}
-
-
-
-	/* =============================
-	 * Functions
-	 * =============================
-	 */
-	/* Compute Square root of a number */
-	(function() {
-	"use strict";
-
-		function sum2() {
-			// convert arguments into an array
-			var args = Array.prototype.slice.call(arguments)
-			var s = 0;
-			
-			if(args.length >= minArgs) {
-				args.forEach(function(entry, index) {
-					s += +args[index]
-				})
-			}
-			else
-				s = +args
-			
-			return s;
-		}
-
-		function sum() {
-			for(var i = 0; i <= arguments.length; i++) {
-				console.log(typeof arguments[i])
-			}
-		}
-
-		function add(a, b) {
-			return (+a + +b)
-		}
-
-	// console.log(sqrt(100))
-	})();
-	
-	
-	/* =============================
-	 * Matrix Functions
-	 * =============================
-	 */
