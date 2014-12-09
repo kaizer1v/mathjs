@@ -1,3 +1,4 @@
+
 (function(window) {
 	var _window = window,
 			_Number = window.Number,
