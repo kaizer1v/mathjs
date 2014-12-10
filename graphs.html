@@ -115,11 +115,26 @@
 
 drawAxes();
 var F = function(x) {
-	return Math.pow(2, x);
+	return 10*Math.cos(x);
 }
-renderGraph(F);
+// renderGraph(F);
 
+var G = function(y) {
+	return Math.tan(y);
+}
 
+var circle = function(r) {
+	var r = r || 1;
+	context.beginPath();
+	for(var theta = 0; theta <= 5*Math.PI; theta+= 0.1) {
+		context.lineTo(
+			X(theta*r*Math.tan(theta*Math.cos(theta))),				// X co-ordinate
+			Y(theta*r*Math.sin(theta*Math.cos(theta)))				// Y co-ordinate
+		);
+	}
+	context.stroke();
+}
+renderGraph(circle());
 	
 
 // starting bakchod
