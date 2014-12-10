@@ -5,13 +5,15 @@
 	<link rel="stylesheet" type="text/css" href="" />
 </head>
 <body>
-	<canvas id="mycanvas" height="800" width="1000">
+	<canvas id="mycanvas">
 		I am fallback content, incase canvas doesn't render.
 	</canvas>
 	
 <script type="text/javascript">
 (function() {
 	var canvas = document.getElementById("mycanvas");
+	canvas.width = window.innerWidth - 20;
+	canvas.height = window.innerHeight - 20;
 	if(canvas.getContext) {
 		var context = canvas.getContext('2d'),
 			cwidth = canvas.width,
@@ -126,10 +128,12 @@ var G = function(y) {
 var circle = function(r) {
 	var r = r || 1;
 	context.beginPath();
-	for(var theta = 0; theta <= 5*Math.PI; theta+= 0.1) {
+	for(var theta = 0; theta <= 1000*Math.PI; theta+= 0.1) {
 		context.lineTo(
-			X(theta*r*Math.tan(theta*Math.cos(theta))),				// X co-ordinate
-			Y(theta*r*Math.sin(theta*Math.cos(theta)))				// Y co-ordinate
+// X co-ordinate
+			X(Math.sqrt(theta)*Math.cos(theta)),
+// Y co-ordinate
+			Y(Math.sqrt(theta)*Math.sin(theta))
 		);
 	}
 	context.stroke();
