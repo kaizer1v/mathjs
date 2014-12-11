@@ -18,8 +18,8 @@
 		var context = canvas.getContext('2d'),
 			cwidth = canvas.width,
 			cheight = canvas.height
-			centerX = canvas.width/2,
-			centerY = canvas.height/2
+			centerX = cwidth/2,
+			centerY = cheight/2
 			maxX = 20,
 			minX = -20,
 			maxY = maxX * (cheight / cwidth),
@@ -111,35 +111,46 @@
 				else
 					context.lineTo(X(x), Y(y));
 			}
+			// context.lineCap = "square";
+			var lineargradient = context.createLinearGradient(0,0,800,800);
+			lineargradient.addColorStop(0, 'blue');
+			lineargradient.addColorStop(0.7, 'green');
+			lineargradient.addColorStop(0.8, 'orange');
+			lineargradient.addColorStop(0.9, 'steelblue');
+			lineargradient.addColorStop(1, 'red');
+			context.strokeStyle = lineargradient;
 			context.stroke();
 		}
 
 
 drawAxes();
 var F = function(x) {
-	return 10*Math.cos(x);
+	return Math.sin(Math.cos(x*x));
 }
-// renderGraph(F);
 
 var G = function(y) {
 	return Math.tan(y);
 }
 
 var circle = function(r) {
-	var r = r || 1;
+	// var r = r || 1;
 	context.beginPath();
-	for(var theta = 0; theta <= 1000*Math.PI; theta+= 0.1) {
+	for(var theta = 0; theta <= 100*Math.PI; theta+= 0.1) {
 		context.lineTo(
 // X co-ordinate
-			X(Math.sqrt(theta)*Math.cos(theta)),
+			X(Math.tan(Math.sqrt(theta))*Math.cos(theta)),
 // Y co-ordinate
-			Y(Math.sqrt(theta)*Math.sin(theta))
+			Y(Math.tan(Math.sqrt(theta))*Math.sin(theta))
 		);
 	}
+	context.lineWidth = 0.5;
 	context.stroke();
 }
-renderGraph(circle());
-	
+
+renderGraph(F);
+// renderGraph(circle());
+// polygon(5);
+
 
 // starting bakchod
 		function target(c, gap) {
@@ -151,7 +162,7 @@ renderGraph(circle());
 		}
 
 		function polygon(sides) {
-			if(sides < 3) sides = 3;
+			sides = sides || 3;
 			for(var x = 0; x <= Math.PI*2; x+= Math.PI*2/sides) {
 				context.arc(200, 200, 100, x, x, true)
 			}
