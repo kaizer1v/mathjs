@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+	<title>Informatica Component Library</title>
+	<link rel="stylesheet" type="text/css" href="" />
+</head>
+<body>
+	<canvas id="test-canvas"></canvas>
+	
+<script type="text/javascript">
+(function() {
+	var canvas = document.getElementById("test-canvas"),
+		context = canvas.getContext("2d")
+	;
+	canvas.width = window.innerWidth - 30;
+	canvas.height = window.innerHeight - 30;
+	context.translate(canvas.width/2, canvas.height/2);		// moved the (0, 0) to (x, y). this also supports negative values of x and y once moved.
+
+	for(var theta = 0; theta <= 20*Math.PI; theta += 0.1) {
+		context.lineTo(
+			40*Math.cos(theta*Math.PI/72),
+			10*Math.sin(theta*Math.PI/72)
+		);
+		context.stroke();
+	}
+})();
+
+</script>
+</body>
+</html>

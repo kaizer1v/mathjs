@@ -123,34 +123,49 @@
 		}
 
 
-drawAxes();
-var F = function(x) {
-	return Math.sin(Math.cos(x*x));
-}
+		drawAxes();
+		var F = function(x) {
+			return Math.sin(x);
+		}
 
-var G = function(y) {
-	return Math.tan(y);
-}
+		var G = function(y) {
+			return Math.tan(y);
+		}
 
-var circle = function(r) {
-	// var r = r || 1;
-	context.beginPath();
-	for(var theta = 0; theta <= 100*Math.PI; theta+= 0.1) {
-		context.lineTo(
-// X co-ordinate
-			X(Math.tan(Math.sqrt(theta))*Math.cos(theta)),
-// Y co-ordinate
-			Y(Math.tan(Math.sqrt(theta))*Math.sin(theta))
-		);
-	}
-	context.lineWidth = 0.5;
-	context.stroke();
-}
+		var circle = function(r) {
+			// var r = r || 1;
+			context.beginPath();
+			for(var theta = 0; theta <= 100*Math.PI; theta+= 0.1) {
+				context.lineTo(
+		// X co-ordinate
+					X(Math.tan(Math.sqrt(theta))*Math.cos(theta)),
+		// Y co-ordinate
+					Y(Math.tan(Math.sqrt(theta))*Math.sin(theta))
+				);
+			}
+			context.lineWidth = 0.5;
+			context.stroke();
+		}
 
-renderGraph(F);
-// renderGraph(circle());
-// polygon(5);
+		renderGraph(F);
+		// renderGraph(circle());
+		// polygon(5);
+		context.save();
 
+
+		// to test saving and restoring
+		context.globalAlpha = 1;
+		function alternative() {
+			for(var i = 100; i >= 1; i--) {
+				if(i % 2 == 0) {
+					context.fillStyle = "red";
+				} else {
+					context.fillStyle = "yellow";
+				}
+				context.fillRect(centerX - (i*20)/2, centerY - (i*20)/2, i*20, i*20);
+			}
+		}
+// alternative();
 
 // starting bakchod
 		function target(c, gap) {
@@ -164,7 +179,7 @@ renderGraph(F);
 		function polygon(sides) {
 			sides = sides || 3;
 			for(var x = 0; x <= Math.PI*2; x+= Math.PI*2/sides) {
-				context.arc(200, 200, 100, x, x, true)
+				context.arc(300, 400, 100, x, x, true)
 			}
 				// context.arc(200, 200, 100, Math.PI/2, Math.PI/3*2, true);
 			context.stroke();

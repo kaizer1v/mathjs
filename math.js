@@ -1,17 +1,38 @@
 
 (function(window) {
 	var _window = window,
-			_Number = window.Number,
-			_Array = window.Array
+		_Number = window.Number,
+		_Array = window.Array
 	;
-	
-	
-
 })(window)
 
 
 
 
+var $math = function() {
+
+	function _factorial(n) {
+		if(typeof n === "number") {						// check if Number already has a method called "factorial"
+			if(n <= 1) return 1;
+			return n * this.factorial(n - 1);
+		} else {
+			throw "Type has to be a number"
+		}
+	}
+
+
+	function _square(n) {
+		if(typeof n === "number") {
+			if(n == 0) return 1;
+			return n*n;
+		}
+	}
+
+	return {
+		factorial: _factorial,
+		square:    _square,	
+	};
+}();		
 
 
 
@@ -255,9 +276,9 @@ Number.prototype.sqrt = function(guess) {
 	/* a - b = returns elements that exist a but not in b. */
 	Array.prototype.substract = function(arr) {
 		var currArr = this,
-				results
+			results
 		;
-		if(arguments.length == 1 && Object.prototype.toString.call(arr) == "[object Array]") {
+		if(arguments.length == 1 && arr.constructor === Array) {
 			if(currArr.length >= arr.length) {
 				var biggerArr = currArr, smallerArr = arr;
 			} else {
@@ -273,14 +294,6 @@ Number.prototype.sqrt = function(guess) {
 			}
 		}
 		return biggerArr;
-	}
-
-	
-	/* Takes a multi-dimensional array as argument and flattens it to a single dimensional array */
-	function flattenArray(arr) {
-		return arr.reduce(function(acc, x) {
-			return acc.concat(Array.isArray(x) ? flattenArray(x) : x);
-		}, []);
 	}
 	
 	
@@ -325,4 +338,85 @@ Number.prototype.sqrt = function(guess) {
 	 */
 	Array.prototype.filterObjects = function(key, value) {
 		return this.filter(function(x) { return x[key] == value; })
+	}
+
+
+
+
+/* ============================================= New Version */
+var mj = (function() {
+	var prvt = "I am Private Ryan. I cannot be accessible from outside";
+	
+	/* Takes a multi-dimensional array as argument and flattens it to a single dimensional array */
+	function _flattenArray(arr) {
+		if(arr && arr.constructor === Array) {
+			return arr.reduce(function(acc, x) {
+				return acc.concat(x && x.constructor === Array ? _flattenArray(x) : x);
+			}, []);
+		} else {
+			throw TypeError("Type should be an array only");
+		}
+	}
+
+
+	/* Merges two arrays and removes all duplicates. */
+	function _mergeArray() {
+		var toReturn = [];
+		if(arguments.length >= 2) {
+			for(var i = 0; i != arguments.length; i++) {
+				if(arguments[i].constructor === Array) {
+					for(j = 0; j != arguments[i].length; j++) {
+						if(arguments[i][j] === undefined) continue;
+						toReturn.push(arguments[i][j]);
+					}
+				} else {
+					throw TypeError("Type should be an array only")
+				}
+			}
+			return toReturn;
+		} else {
+			throw new Error("Should pass atleast 2 arrays to merge")
+		}
+	}
+
+
+	function _uniqueArray(arr) {
+		var results = [];
+		if(arr && arr.constructor === Array) {
+			for(var i = 0; i != arr.length; i++) {
+				if(results.indexOf(arr[i]) == -1) {
+					results.push(arr[i]);
+				}
+			}
+			return results;
+		} else {
+			throw TypeError("Type should be an array only");
+		}
+	}
+
+
+	return {
+		flattenArray: _flattenArray,
+		mergeArray: _mergeArray,
+		uniqueArray: _uniqueArray
+	}
+})();
+
+
+
+
+
+/* returns all unique elements in the array i.e. that doesn't exist more than once. */
+	Array.prototype.uniques = function() {
+		var temp = {},
+			results = []
+		;
+		for(var i = 0, l = this.length; i != l; i++) {
+			if(temp.hasOwnProperty(this[i])) {
+				continue;
+			}
+			temp[this[i]] = 1;
+			results.push(this[i]);
+		}
+		return results.sortAsc();
 	}
