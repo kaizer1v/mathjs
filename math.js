@@ -113,69 +113,13 @@ if(x > 0)
 	*	This works with arrays containing only numbers
 	* =============================
 	*/
-	Array.prototype.sum = function() {
-		return this.reduce(function(a, b) { return a+b; }, 0);
-	}
 
-	Array.prototype.product = function() {
-		return this.reduce(function(a, b) { return a*b; });
-	}
-
-	Array.prototype.max = function() {
-		return this.reduce(function(a, b) { return (a > b) ? a : b; });
-	}
-
-	Array.prototype.min = function() {
-		return this.reduce(function(a, b) { return (a < b) ? a : b; });
-	}
-
-	/* [a, b, c].pow() = ((a^b)^c) and so on. */
-	Array.prototype.pow = function() {
-		return this.reduce(function(a, b) { return Math.pow(a, b); });
-	}
 
 	/* =============================
 	* Set Theory
 	*	this works with arrays containing strings as well as numbers
 	* =============================
 	*/
-	Array.prototype.sortAsc = function() {
-		this.sort(function(a, b) {
-			if(typeof a === "string" && typeof b === "string" && a < b) {
-				return -1;
-			}
-			if(typeof a === "string" && typeof b === "string" && a > b) {
-				return 1;
-			}
-
-			if(typeof a === "number" && typeof b === "number" && a < b) {
-				return -1;
-			}
-			if(typeof a === "number" && typeof b === "number" && a > b) {
-				return 1;
-			}
-		})
-		return this;
-	}
-
-	Array.prototype.sortDesc = function() {
-		this.sort(function(a, b) {
-			if(typeof a === "string" && typeof b === "string" && a > b) {
-				return -1;
-			}
-			if(typeof a === "string" && typeof b === "string" && a < b) {
-				return 1;
-			}
-
-			if(typeof a === "number" && typeof b === "number" && a > b) {
-				return -1;
-			}
-			if(typeof a === "number" && typeof b === "number" && a < b) {
-				return 1;
-			}
-		})
-		return this;
-	}
 
 /* To check whether a function is array like */
 /* But instead, you can actually use Array.isArray() inbuilt function */
@@ -319,7 +263,6 @@ var MJ = (function() {
 			}
 		}
 
-
 		/* returns an array of all duplicates existing within the array */
 		function _arrayGetDuplicates(arr) {
 			if(arr.constructor === Array) {
@@ -334,20 +277,66 @@ var MJ = (function() {
 			}
 			return _arrayUnique(toReturn);
 		}
-		Array.prototype.duplicates = function() {
-			var results = [],
-			temp = {},
-			count = 1
-			;
-			for(var i = 0, l = this.length, arr = this; i != l; i++) {
-				if(!arr[i]) continue;
-				if(!temp.hasOwnProperty(arr[i]) && typeof arr[i] !== "function") {
-					temp[arr[i]] = count;
-				} else {
-					results.push(arr[i])
+
+		/* Sorts an array in a descending form */
+		function _arraySort(arr, ascDesc) {
+			var ascDesc = ascDesc || true;
+			if(arr.constructor === Array) {
+				if(ascDesc) {						// ascending
+					arr.sort(function(a, b) {
+						if(a.constructor === String && b.constructor === String && a > b) return 1;
+						if(a.constructor === String && b.constructor === String && a < b) return -1;
+						if(a.constructor === Number && b.constructor === Number && a > b) return 1;
+						if(a.constructor === Number && b.constructor === Number && a < b) return -1;
+					});
+				} else {								// descending
+					arr.sort(function(a, b) {
+						if(a.constructor === String && b.constructor === String && a > b) return -1;
+						if(a.constructor === String && b.constructor === String && a < b) return 1;
+						if(a.constructor === Number && b.constructor === Number && a > b) return -1;
+						if(a.constructor === Number && b.constructor === Number && a < b) return 1;
+					});
 				}
+			} else {
+				throw TypeError("Type should be an array only");
 			}
-			return results.uniques().sortAsc();
+			return arr;
+		}
+
+		function _arraySum(arr) {
+			if(arr.constructor === Array)
+				return arr.reduce(function(a, b) { return a + b; }, 0);
+			else
+				throw TypeError("Type should be an array only");
+		}
+
+		function _arrayProduct(arr) {
+			if(arr.constructor === Array)
+				return arr.reduce(function(a, b) { return a * b; });
+			else
+				throw TypeError("Type should be an array only");
+		}
+
+		function _arrayMax(arr) {
+			if(arr.constructor === Array)
+				return arr.reduce(function(a, b) { return (a > b) ? a : b; });
+			else
+				throw TypeError("Type should be an array only");
+		}
+
+		function _arrayMax(arr) {
+			if(arr.constructor === Array)
+				return arr.reduce(function(a, b) { return (a < b) ? a : b; });
+			else
+				throw TypeError("Type should be an array only");
+		}
+
+		/* [a, b, c].pow() = ((a^b)^c) and so on. */
+		function _arrayPow(arr) {
+			if(arr.constructor === Array)
+				return arr.reduce(function(a, b) { return Math.pow(a, b); });
+			else
+				throw TypeError("Type should be an array only");
 		}
 
 		/* Return all public functions */
@@ -355,14 +344,22 @@ var MJ = (function() {
 			// Number Functions
 
 
-			// Array functions
+			// Array Set theory functions
 			arrayFlatten: _arrayFlatten,
 			arrayMerge: _arrayMerge,
 			arrayUnique: _arrayUnique,
 			arraySubstract: _arraySubstract,
 			arrayUnion: _arrayUnion,
 			arrayHasDuplicates: _arrayHasDuplicates,
-			arrayGetDuplicates: _arrayGetDuplicates
+			arrayGetDuplicates: _arrayGetDuplicates,
+			arraySort: _arraySort,
+
+			// Array Math functionalities
+			arrayMax: _arrayMax,
+			arrayMin: _arrayMin,
+			arraySum: _arraySum,
+			arrayProd: _arrayProduct,
+			arrayPow: _arrayPow
 		}
 	};
 
