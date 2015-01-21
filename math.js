@@ -1,9 +1,8 @@
-
 (function(window) {
-	var _window = window,
-		_Number = window.Number,
-		_Array = window.Array
-	;
+var _window = window,
+_Number = window.Number,
+_Array = window.Array
+;
 })(window)
 
 
@@ -11,59 +10,59 @@
 
 var $math = function() {
 
-	function _factorial(n) {
-		if(typeof n === "number") {						// check if Number already has a method called "factorial"
-			if(n <= 1) return 1;
-			return n * this.factorial(n - 1);
-		} else {
-			throw "Type has to be a number"
-		}
-	}
+function _factorial(n) {
+if(typeof n === "number") {						// check if Number already has a method called "factorial"
+	if(n <= 1) return 1;
+	return n * this.factorial(n - 1);
+} else {
+	throw "Type has to be a number"
+}
+}
 
 
-	function _square(n) {
-		if(typeof n === "number") {
-			if(n == 0) return 1;
-			return n*n;
-		}
-	}
+function _square(n) {
+if(typeof n === "number") {
+	if(n == 0) return 1;
+	return n*n;
+}
+}
 
-	return {
-		factorial: _factorial,
-		square:    _square,	
-	};
-}();		
+return {
+factorial: _factorial,
+square:    _square,
+};
+}();
 
 
 
 /* =============================
- * FUNCTION on Numbers
- *	This works with variables whose typeof == "number"
- * =============================
- */
- 
+* FUNCTION on Numbers
+*	This works with variables whose typeof == "number"
+* =============================
+*/
+
 /* An alternate way of writing the factorial function written right below */
 // Object.defineProperty(Number.prototype, "factorial", {
-	// enumerable: false,
-	// value: function() {
-		// if(this <= 1) return 1;
-		// return this * (this - 1).factorial()
-	// }
+// enumerable: false,
+// value: function() {
+// if(this <= 1) return 1;
+// return this * (this - 1).factorial()
+// }
 // });
 
 /* returns factorials of the number. You can use it like so:
- * var x = 5; console.log(x.factorial())
- */
+* var x = 5; console.log(x.factorial())
+*/
 Number.prototype.factorial = function() {
-	if(!this.hasOwnProperty("factorial")) {						// check if Number already has a method called "factorial"
-		if(this <= 1) return 1;
-		return this * (this - 1).factorial();
-	}
+if(!this.hasOwnProperty("factorial")) {						// check if Number already has a method called "factorial"
+if(this <= 1) return 1;
+return this * (this - 1).factorial();
+}
 }
 
 /* returns all factors of the number */
 Number.prototype.factors = function() {
-	
+
 }
 
 /* returns true if is prime, else false */
@@ -76,54 +75,54 @@ Number.prototype.primeFactors = function() {
 }
 
 Number.prototype.sqrt = function(guess) {
-	var guess = typeof guess !== "undefined" ? guess : 1,
-			z = (this / guess),
-			m = average(z, guess)
-	;
-	const tolerance = 0.0001;
-	
-	return (goodEnough(m, this)) ? m : this.sqrt(m);
+var guess = typeof guess !== "undefined" ? guess : 1,
+z = (this / guess),
+m = average(z, guess)
+;
+const tolerance = 0.0001;
 
-	function square(x) {
-		return x*x;
-	}
-	function improve(guess, x) {
-		return average(guess, (x / guess))
-	}
-	function average(x, y) {
-		return ((x + y) / 2)
-	}
-	function goodEnough(guess, x) {
-		return (abs(square(guess) - x) < tolerance) ? true : false
-	}
-	function abs(x) {
-		if(x > 0)
-			var v = x;
-		else if(x < 0)
-			var v = -1*(x);
+return (goodEnough(m, this)) ? m : this.sqrt(m);
+
+function square(x) {
+return x*x;
+}
+function improve(guess, x) {
+return average(guess, (x / guess))
+}
+function average(x, y) {
+return ((x + y) / 2)
+}
+function goodEnough(guess, x) {
+return (abs(square(guess) - x) < tolerance) ? true : false
+}
+function abs(x) {
+if(x > 0)
+	var v = x;
+	else if(x < 0)
+		var v = -1*(x);
 		else if(x == 0)
 			var v = 1;
-		
-		return v;
-	}
-}
 
-/*
+			return v;
+		}
+	}
+
+	/*
 	Best way to get sum of array elements
-	
+
 	[1, 5, 6, 2].reduce(function(a, b) { return a+b; }, 0)
-*/
-		
+	*/
+
 	Array.prototype.getPrimes = function() {
 		var results = []
 		;
-		
+
 	}
 	/* =============================
-	 * Numberical Functions
-	 *	This works with arrays containing only numbers
-	 * =============================
-	 */
+	* Numberical Functions
+	*	This works with arrays containing only numbers
+	* =============================
+	*/
 	Array.prototype.sum = function() {
 		return this.reduce(function(a, b) { return a+b; }, 0);
 	}
@@ -139,17 +138,17 @@ Number.prototype.sqrt = function(guess) {
 	Array.prototype.min = function() {
 		return this.reduce(function(a, b) { return (a < b) ? a : b; });
 	}
-	
+
 	/* [a, b, c].pow() = ((a^b)^c) and so on. */
 	Array.prototype.pow = function() {
 		return this.reduce(function(a, b) { return Math.pow(a, b); });
 	}
 
 	/* =============================
-	 * Set Theory
-	 *	this works with arrays containing strings as well as numbers
-	 * =============================
-	 */
+	* Set Theory
+	*	this works with arrays containing strings as well as numbers
+	* =============================
+	*/
 	Array.prototype.sortAsc = function() {
 		this.sort(function(a, b) {
 			if(typeof a === "string" && typeof b === "string" && a < b) {
@@ -158,7 +157,7 @@ Number.prototype.sqrt = function(guess) {
 			if(typeof a === "string" && typeof b === "string" && a > b) {
 				return 1;
 			}
-			
+
 			if(typeof a === "number" && typeof b === "number" && a < b) {
 				return -1;
 			}
@@ -177,7 +176,7 @@ Number.prototype.sqrt = function(guess) {
 			if(typeof a === "string" && typeof b === "string" && a < b) {
 				return 1;
 			}
-			
+
 			if(typeof a === "number" && typeof b === "number" && a > b) {
 				return -1;
 			}
@@ -188,14 +187,14 @@ Number.prototype.sqrt = function(guess) {
 		return this;
 	}
 
-	
+
 	/* add a parameter to check whether it is existing more than once i.e. whether it has duplicates */
 	Array.prototype.hasDuplicates = function(n) {
 		var len = this.length,
-				pos = 0,
-				results = [],
-				index = this.indexOf(n),
-				lastIndex = this.lastIndexOf(n)
+		pos = 0,
+		results = [],
+		index = this.indexOf(n),
+		lastIndex = this.lastIndexOf(n)
 		;
 		return ( (index !== -1) && (lastIndex !== -1) && (index !== lastIndex) ) ? true : false;
 	}
@@ -204,8 +203,8 @@ Number.prototype.sqrt = function(guess) {
 	/* returns an array of all duplicates existing within the array */
 	Array.prototype.duplicates = function() {
 		var results = [],
-				temp = {},
-				count = 1
+		temp = {},
+		count = 1
 		;
 		for(var i = 0, l = this.length, arr = this; i != l; i++) {
 			if(!arr[i]) continue;
@@ -222,7 +221,7 @@ Number.prototype.sqrt = function(guess) {
 	/* returns all unique elements in the array i.e. that doesn't exist more than once. */
 	Array.prototype.uniques = function() {
 		var temp = {},
-				results = []
+		results = []
 		;
 		for(var i = 0, l = this.length; i != l; i++) {
 			if(temp.hasOwnProperty(this[i])) {
@@ -276,7 +275,7 @@ Number.prototype.sqrt = function(guess) {
 	/* a - b = returns elements that exist a but not in b. */
 	Array.prototype.substract = function(arr) {
 		var currArr = this,
-			results
+		results
 		;
 		if(arguments.length == 1 && arr.constructor === Array) {
 			if(currArr.length >= arr.length) {
@@ -295,50 +294,50 @@ Number.prototype.sqrt = function(guess) {
 		}
 		return biggerArr;
 	}
-	
-	
+
+
 	// Array.prototype.getSubArrays = function() {
-		// var results = [];
-		// for(var i = 0; i != this.length; i++) {
-			// if(isArrayLike(this[i])) {
-				// results.push(this[i])
-			// }
-		// }
-		
+	// var results = [];
+	// for(var i = 0; i != this.length; i++) {
+	// if(isArrayLike(this[i])) {
+	// results.push(this[i])
 	// }
-	
-	
+	// }
+
+	// }
+
+
 	/*
 	Array.prototype.restrict = function(arr) {
-		var currArr = this
-		;
-		
-	}
-	*/
+	var currArr = this
+	;
 
-	/* To check whether a function is array like */
-	/* But instead, you can actually use Array.isArray() inbuilt function */
-	function isArrayLike(obj) {
-		return (obj &&
-			typeof obj === "object" &&
-			isFinite(obj.length) &&
-			obj.length >= 0 &&
-			obj.length == Math.floor(obj.length) &&
-			obj.length < Math.pow(2, 32)
-		)
-		? true
-		: false
-		;
-	}
+}
+*/
+
+/* To check whether a function is array like */
+/* But instead, you can actually use Array.isArray() inbuilt function */
+function isArrayLike(obj) {
+	return (obj &&
+		typeof obj === "object" &&
+		isFinite(obj.length) &&
+		obj.length >= 0 &&
+		obj.length == Math.floor(obj.length) &&
+		obj.length < Math.pow(2, 32)
+	)
+	? true
+	: false
+	;
+}
 
 
-	/* =============================
-	 * Object Arrays
-	 * =============================
-	 */
-	Array.prototype.filterObjects = function(key, value) {
-		return this.filter(function(x) { return x[key] == value; })
-	}
+/* =============================
+* Object Arrays
+* =============================
+*/
+Array.prototype.filterObjects = function(key, value) {
+	return this.filter(function(x) { return x[key] == value; })
+}
 
 
 
@@ -346,7 +345,7 @@ Number.prototype.sqrt = function(guess) {
 /* ============================================= New Version */
 var mj = (function() {
 	var prvt = "I am Private Ryan. I cannot be accessible from outside";
-	
+
 	/* Takes a multi-dimensional array as argument and flattens it to a single dimensional array */
 	function _flattenArray(arr) {
 		if(arr && arr.constructor === Array) {
@@ -407,16 +406,16 @@ var mj = (function() {
 
 
 /* returns all unique elements in the array i.e. that doesn't exist more than once. */
-	Array.prototype.uniques = function() {
-		var temp = {},
-			results = []
-		;
-		for(var i = 0, l = this.length; i != l; i++) {
-			if(temp.hasOwnProperty(this[i])) {
-				continue;
-			}
-			temp[this[i]] = 1;
-			results.push(this[i]);
+Array.prototype.uniques = function() {
+	var temp = {},
+	results = []
+	;
+	for(var i = 0, l = this.length; i != l; i++) {
+		if(temp.hasOwnProperty(this[i])) {
+			continue;
 		}
-		return results.sortAsc();
+		temp[this[i]] = 1;
+		results.push(this[i]);
 	}
+	return results.sortAsc();
+}
