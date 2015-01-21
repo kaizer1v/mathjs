@@ -1,17 +1,3 @@
-/* returns all factors of the number */
-Number.prototype.factors = function() {
-
-}
-
-/* returns true if is prime, else false */
-/* RULE: all integers that are less than the sqrt of the number - can be its factors, else not */
-Number.prototype.isPrime = function() {
-}
-
-Number.prototype.primeFactors = function() {
-
-}
-
 Number.prototype.sqrt = function(guess) {
 	var guess = typeof guess !== "undefined" ? guess : 1,
 	z = (this / guess),
@@ -56,16 +42,6 @@ function isArrayLike(obj) {
 	: false
 	;
 }
-
-
-/* =============================
-* Object Arrays
-* =============================
-*/
-Array.prototype.filterObjects = function(key, value) {
-	return this.filter(function(x) { return x[key] == value; })
-}
-
 
 
 
@@ -292,6 +268,26 @@ var MJ = (function() {
 				throw TypeError("Type should be an array only");
 		}
 
+
+		/* =============================
+		* Object Arrays
+		* =============================
+		*/
+		/* This function takes an Object "obj", a key and a value as parameters and filters out if that key-value pair exists */
+		function _filterObject(obj, key, value) {
+			if(obj.constructor === Object) {
+				return obj.filter(function(x) { return x[key] == value; })
+			} else throw TypeError("Type should be an object only");
+		}
+
+		function _getObjectVal(obj, key) {
+			if(obj.constructor === Object && obj[key]) {
+				return obj.filter(function(x) { return x[key]; })
+			} else throw TypeError("Type should be an object only");
+		}
+
+
+
 		/* Return all public functions */
 		return {
 			// Number Functions
@@ -313,7 +309,11 @@ var MJ = (function() {
 			arrayMin: _arrayMin,
 			arraySum: _arraySum,
 			arrayProd: _arrayProduct,
-			arrayPow: _arrayPow
+			arrayPow: _arrayPow,
+
+			// Object functionalities
+			objFilter: _filterObject,
+			objGetVal: _getObjectVal
 		}
 	};
 
