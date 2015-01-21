@@ -177,37 +177,6 @@ if(x > 0)
 		return this;
 	}
 
-
-	/* add a parameter to check whether it is existing more than once i.e. whether it has duplicates */
-	Array.prototype.hasDuplicates = function(n) {
-		var len = this.length,
-		pos = 0,
-		results = [],
-		index = this.indexOf(n),
-		lastIndex = this.lastIndexOf(n)
-		;
-		return ( (index !== -1) && (lastIndex !== -1) && (index !== lastIndex) ) ? true : false;
-	}
-
-
-	/* returns an array of all duplicates existing within the array */
-	Array.prototype.duplicates = function() {
-		var results = [],
-		temp = {},
-		count = 1
-		;
-		for(var i = 0, l = this.length, arr = this; i != l; i++) {
-			if(!arr[i]) continue;
-			if(!temp.hasOwnProperty(arr[i]) && typeof arr[i] !== "function") {
-				temp[arr[i]] = count;
-			} else {
-				results.push(arr[i])
-			}
-		}
-		return results.uniques().sortAsc();
-	}
-
-
 /* To check whether a function is array like */
 /* But instead, you can actually use Array.isArray() inbuilt function */
 function isArrayLike(obj) {
@@ -335,13 +304,65 @@ var MJ = (function() {
 			}
 		}
 
+		/* returns true of "elem" is present more than once in "arr", if not returns false */
+		function _arrayHasDuplicates(arr, elem) {
+			if(arr.constructor === Array) {
+				var len = arr.length,
+						pos = 0,
+						results = [],
+						index = arr.indexOf(elem),
+						lastIndex = arr.lastIndexOf(elem)
+					;
+					return ((index !== -1) && (lastIndex !== -1) && (index !== lastIndex)) ? true : false;
+			} else {
+				throw TypeError("Type should be an array only");
+			}
+		}
+
+
+		/* returns an array of all duplicates existing within the array */
+		function _arrayGetDuplicates(arr) {
+			if(arr.constructor === Array) {
+				var toReturn = [];
+				for(var i = 0; i != arr.length; i++) {
+					if(_arrayHasDuplicates(arr, arr[i])) {
+						toReturn.push(arr[i]);
+					}
+				}
+			} else {
+				throw TypeError("Type should be an array only");
+			}
+			return _arrayUnique(toReturn);
+		}
+		Array.prototype.duplicates = function() {
+			var results = [],
+			temp = {},
+			count = 1
+			;
+			for(var i = 0, l = this.length, arr = this; i != l; i++) {
+				if(!arr[i]) continue;
+				if(!temp.hasOwnProperty(arr[i]) && typeof arr[i] !== "function") {
+					temp[arr[i]] = count;
+				} else {
+					results.push(arr[i])
+				}
+			}
+			return results.uniques().sortAsc();
+		}
+
 		/* Return all public functions */
 		return {
+			// Number Functions
+
+
+			// Array functions
 			arrayFlatten: _arrayFlatten,
 			arrayMerge: _arrayMerge,
 			arrayUnique: _arrayUnique,
 			arraySubstract: _arraySubstract,
-			arrayUnion: _arrayUnion
+			arrayUnion: _arrayUnion,
+			arrayHasDuplicates: _arrayHasDuplicates,
+			arrayGetDuplicates: _arrayGetDuplicates
 		}
 	};
 
