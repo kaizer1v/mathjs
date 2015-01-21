@@ -1,36 +1,26 @@
-(function(window) {
-var _window = window,
-_Number = window.Number,
-_Array = window.Array
-;
-})(window)
-
-
-
-
 var $math = function() {
 
 function _factorial(n) {
-if(typeof n === "number") {						// check if Number already has a method called "factorial"
-	if(n <= 1) return 1;
-	return n * this.factorial(n - 1);
-} else {
-	throw "Type has to be a number"
-}
+	if(typeof n === "number") {						// check if Number already has a method called "factorial"
+		if(n <= 1) return 1;
+		return n * this.factorial(n - 1);
+	} else {
+		throw "Type has to be a number"
+	}
 }
 
 
 function _square(n) {
-if(typeof n === "number") {
-	if(n == 0) return 1;
-	return n*n;
-}
+	if(typeof n === "number") {
+		if(n == 0) return 1;
+		return n*n;
+	}
 }
 
-return {
-factorial: _factorial,
-square:    _square,
-};
+	return {
+		factorial: _factorial,
+		square:    _square,
+	};
 }();
 
 
@@ -218,103 +208,6 @@ if(x > 0)
 	}
 
 
-	/* returns all unique elements in the array i.e. that doesn't exist more than once. */
-	Array.prototype.uniques = function() {
-		var temp = {},
-		results = []
-		;
-		for(var i = 0, l = this.length; i != l; i++) {
-			if(temp.hasOwnProperty(this[i])) {
-				continue;
-			}
-			temp[this[i]] = 1;
-			results.push(this[i]);
-		}
-		return results.sortAsc();
-	}
-
-	/* returns all types of objects containing in the array, along with its respective counts */
-	// need to complete
-	Array.prototype.getTypes = function() {
-		var results = {};
-		return this.map(function(x) { return typeof x; });
-	}
-
-	/* returns union along with duplicates of arrays passed in the parameters */
-	Array.prototype.union = function() {
-		var currArr = this
-		;
-		for(i = 0; i != arguments.length; i++) {
-			if(Object.prototype.toString.call(arguments[i]) == "[object Array]") {
-				for(j = 0; j != arguments[i].length; j++) {
-					if(arguments[i][j] === undefined) continue;
-					currArr.push(arguments[i][j]);
-				}
-			}
-		}
-		return currArr;
-	}
-
-
-	/* Removes Duplicates from arrays passed in parameters */
-	Array.prototype.merge = function() {
-		var currArr = this
-		;
-		for(i = 0; i != arguments.length; i++) {
-			if(Object.prototype.toString.call(arguments[i]) == "[object Array]") {
-				for(j = 0; j != arguments[i].length; j++) {
-					if(arguments[i][j] === undefined) continue;
-					currArr.push(arguments[i][j]);
-				}
-			}
-		}
-		return currArr.uniques();
-	}
-
-
-	/* a - b = returns elements that exist a but not in b. */
-	Array.prototype.substract = function(arr) {
-		var currArr = this,
-		results
-		;
-		if(arguments.length == 1 && arr.constructor === Array) {
-			if(currArr.length >= arr.length) {
-				var biggerArr = currArr, smallerArr = arr;
-			} else {
-				var smallerArr = currArr, biggerArr = arr;
-			}
-
-			for(var i = 0; i != biggerArr.length; i++) {
-				for(var j = 0; j != smallerArr.length; j++) {
-					if(smallerArr[j] === biggerArr[i]) {
-						delete biggerArr[i];
-					}
-				}
-			}
-		}
-		return biggerArr;
-	}
-
-
-	// Array.prototype.getSubArrays = function() {
-	// var results = [];
-	// for(var i = 0; i != this.length; i++) {
-	// if(isArrayLike(this[i])) {
-	// results.push(this[i])
-	// }
-	// }
-
-	// }
-
-
-	/*
-	Array.prototype.restrict = function(arr) {
-	var currArr = this
-	;
-
-}
-*/
-
 /* To check whether a function is array like */
 /* But instead, you can actually use Array.isArray() inbuilt function */
 function isArrayLike(obj) {
@@ -343,79 +236,145 @@ Array.prototype.filterObjects = function(key, value) {
 
 
 /* ============================================= New Version */
-var mj = (function() {
-	var prvt = "I am Private Ryan. I cannot be accessible from outside";
+var MJ = (function() {
 
-	/* Takes a multi-dimensional array as argument and flattens it to a single dimensional array */
-	function _flattenArray(arr) {
-		if(arr && arr.constructor === Array) {
-			return arr.reduce(function(acc, x) {
-				return acc.concat(x && x.constructor === Array ? _flattenArray(x) : x);
-			}, []);
-		} else {
-			throw TypeError("Type should be an array only");
+	var instance;
+
+	function init() {
+
+		/* Takes a multi-dimensional array as argument and flattens it to a single dimensional array */
+		function _arrayFlatten(arr) {
+			if(arr && arr.constructor === Array) {
+				return arr.reduce(function(acc, x) {
+					return acc.concat(x && x.constructor === Array ? _flattenArray(x) : x);
+				}, []);
+			} else {
+				throw TypeError("Type should be an array only");
+			}
 		}
-	}
 
 
-	/* Merges two arrays and removes all duplicates. */
-	function _mergeArray() {
-		var toReturn = [];
-		if(arguments.length >= 2) {
-			for(var i = 0; i != arguments.length; i++) {
-				if(arguments[i].constructor === Array) {
-					for(j = 0; j != arguments[i].length; j++) {
-						if(arguments[i][j] === undefined) continue;
-						toReturn.push(arguments[i][j]);
-					}
+		/* returns all unique elements in the array i.e. that doesn't exist more than once. */
+		function _arrayUnique(arr) {
+			if(arr.constructor === Array) {
+				if(arr.length == 1) return arr;
+				return arr.filter(function(item, pos) {
+					return arr.indexOf(item) == pos;
+				});
+			} else {
+				throw TypeError("Type should be an array only");
+			}
+		}
+
+
+		/* a - b = returns elements that exist a but not in b. */
+		function _arraySubstract(arr1, arr2) {
+			if((arr1 && arr2) && (arr1.constructor === Array && arr2.constructor === Array)) {
+				if(arr1 >= arr2) {
+					var biggerArr = arr1, smallerArr = arr2;
 				} else {
-					throw TypeError("Type should be an array only")
+					var biggerArr = arr2, smallerArr = arr1;
 				}
-			}
-			return toReturn;
-		} else {
-			throw new Error("Should pass atleast 2 arrays to merge")
-		}
-	}
 
-
-	function _uniqueArray(arr) {
-		var results = [];
-		if(arr && arr.constructor === Array) {
-			for(var i = 0; i != arr.length; i++) {
-				if(results.indexOf(arr[i]) == -1) {
-					results.push(arr[i]);
+				for(var i = 0; i != biggerArr.length; i++) {
+					for(var j = 0; j != smallerArr.length; j++) {
+						if(smallerArr[j] === biggerArr[i]) {
+							delete biggerArr[i];
+						}
+					}
 				}
+				return biggerArr;
+			} else {
+				throw TypeError("Type should be an array only");
 			}
-			return results;
-		} else {
-			throw TypeError("Type should be an array only");
 		}
-	}
 
+
+		/* Merges two arrays and removes all duplicates. */
+		function _arrayMerge() {
+			if(arguments && arguments.length == 1) {
+				return arguments[0];
+			} else if(arguments && arguments.length > 1) {
+				var currArr = arguments[0];
+				for(var i = 0; i != arguments.length; i++) {
+					if(arguments[i].constructor === Array) {
+						for(var j = 0; j != arguments[i].length; j++) {
+							if(arguments[i][j] === undefined) continue;
+							currArr.push(arguments[i][j]);
+						}
+					} else {
+						throw TypeError("Type should be an array only");
+					}
+				}
+			} else {
+				throw Error("You need to pass atleast 1 argument");
+			}
+			return _arrayUnique(currArr);
+		}
+
+		/* returns all types of objects containing in the array */
+		function _arrayElemTypes(arr) {
+			if(arr.constructor === Array) {
+				return arr.map(function(x) { return typeof x; });
+			} else {
+				throw TypeError("Type should be an array only");
+			}
+		}
+
+		/* returns union along with duplicates of arrays passed in the parameters */
+		function _arrayUnion() {
+			if(arguments && arguments.length == 1) {
+				return arguments[0];
+			} else if(arguments && arguments.length > 1) {
+				var currArr = arguments[0];
+				for(var i = 0; i != arguments.length; i++) {
+					if(arguments[i].constructor === Array) {
+					// 	for(var j = 0; j != arguments[i].length; j++) {
+					// 		if(arguments[i][j] === undefined) continue;
+					// 		currArr.push(arguments[i][j]);
+					// 	}
+					} else {
+						throw TypeError("Type should be an array only");
+					}
+				}
+				return currArr;
+			} else {
+				throw Error("You need to pass atleast 1 argument");
+			}
+
+		}
+		// Array.prototype.union = function() {
+		// 	var currArr = this
+		// 	;
+		// 	for(i = 0; i != arguments.length; i++) {
+		// 		if(Object.prototype.toString.call(arguments[i]) == "[object Array]") {
+		// 			for(j = 0; j != arguments[i].length; j++) {
+		// 				if(arguments[i][j] === undefined) continue;
+		// 				currArr.push(arguments[i][j]);
+		// 			}
+		// 		}
+		// 	}
+		// 	return currArr;
+		// }
+
+		/* Return all public functions */
+		return {
+			arrayFlatten: _arrayFlatten,
+			arrayMerge: _arrayMerge,
+			arrayUnique: _arrayUnique,
+			arraySubstract: _arraySubstract,
+			arrayUnion: _arrayUnion
+		}
+	};
 
 	return {
-		flattenArray: _flattenArray,
-		mergeArray: _mergeArray,
-		uniqueArray: _uniqueArray
-	}
+		// creating a new singleton instance.
+		getInstance: function() {
+			instance = init();
+			return instance;
+		}
+	};
+
 })();
 
-
-
-
-
-/* returns all unique elements in the array i.e. that doesn't exist more than once. */
-Array.prototype.uniques = function() {
-	var temp = {},
-	results = []
-	;
-	for(var i = 0, l = this.length; i != l; i++) {
-		if(temp.hasOwnProperty(this[i])) {
-			continue;
-		}
-		temp[this[i]] = 1;
-		results.push(this[i]);
-	}
-	return results.sortAsc();
-}
+var mj = MJ.getInstance();
