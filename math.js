@@ -1,55 +1,3 @@
-var $math = function() {
-
-function _factorial(n) {
-	if(typeof n === "number") {						// check if Number already has a method called "factorial"
-		if(n <= 1) return 1;
-		return n * this.factorial(n - 1);
-	} else {
-		throw "Type has to be a number"
-	}
-}
-
-
-function _square(n) {
-	if(typeof n === "number") {
-		if(n == 0) return 1;
-		return n*n;
-	}
-}
-
-	return {
-		factorial: _factorial,
-		square:    _square,
-	};
-}();
-
-
-
-/* =============================
-* FUNCTION on Numbers
-*	This works with variables whose typeof == "number"
-* =============================
-*/
-
-/* An alternate way of writing the factorial function written right below */
-// Object.defineProperty(Number.prototype, "factorial", {
-// enumerable: false,
-// value: function() {
-// if(this <= 1) return 1;
-// return this * (this - 1).factorial()
-// }
-// });
-
-/* returns factorials of the number. You can use it like so:
-* var x = 5; console.log(x.factorial())
-*/
-Number.prototype.factorial = function() {
-if(!this.hasOwnProperty("factorial")) {						// check if Number already has a method called "factorial"
-if(this <= 1) return 1;
-return this * (this - 1).factorial();
-}
-}
-
 /* returns all factors of the number */
 Number.prototype.factors = function() {
 
@@ -65,61 +13,34 @@ Number.prototype.primeFactors = function() {
 }
 
 Number.prototype.sqrt = function(guess) {
-var guess = typeof guess !== "undefined" ? guess : 1,
-z = (this / guess),
-m = average(z, guess)
-;
-const tolerance = 0.0001;
+	var guess = typeof guess !== "undefined" ? guess : 1,
+	z = (this / guess),
+	m = average(z, guess)
+	;
+	const tolerance = 0.0001;
 
-return (goodEnough(m, this)) ? m : this.sqrt(m);
+	return (goodEnough(m, this)) ? m : this.sqrt(m);
 
-function square(x) {
-return x*x;
-}
-function improve(guess, x) {
-return average(guess, (x / guess))
-}
-function average(x, y) {
-return ((x + y) / 2)
-}
-function goodEnough(guess, x) {
-return (abs(square(guess) - x) < tolerance) ? true : false
-}
-function abs(x) {
-if(x > 0)
-	var v = x;
-	else if(x < 0)
-		var v = -1*(x);
-		else if(x == 0)
-			var v = 1;
-
-			return v;
-		}
+	function improve(guess, x) {
+		return average(guess, (x / guess))
 	}
-
-	/*
-	Best way to get sum of array elements
-
-	[1, 5, 6, 2].reduce(function(a, b) { return a+b; }, 0)
-	*/
-
-	Array.prototype.getPrimes = function() {
-		var results = []
-		;
-
+	function average(x, y) {
+		return ((x + y) / 2)
 	}
-	/* =============================
-	* Numberical Functions
-	*	This works with arrays containing only numbers
-	* =============================
-	*/
+	function goodEnough(guess, x) {
+		return (abs(square(guess) - x) < tolerance) ? true : false
+	}
+	function abs(x) {
+		if(x > 0)
+			var v = x;
+			else if(x < 0)
+				var v = -1*(x);
+				else if(x == 0)
+					var v = 1;
+					return v;
+	}
+}
 
-
-	/* =============================
-	* Set Theory
-	*	this works with arrays containing strings as well as numbers
-	* =============================
-	*/
 
 /* To check whether a function is array like */
 /* But instead, you can actually use Array.isArray() inbuilt function */
@@ -154,6 +75,38 @@ var MJ = (function() {
 	var instance;
 
 	function init() {
+
+		/* =======================
+		 * NUMBER FUNCTIONS
+		 * =======================
+		 */
+		/* returns factorials of the number. You can use it like so: */
+		function _factorial(n) {
+			if(n.constructor === Number && !n.hasOwnProperty("factorial")) {
+				if(n <= 1) return 1;
+				return n * _factorial(n - 1);
+			} else throw TypeErorr("Type has to be a number only");
+		}
+
+		function _square(n) {
+			if(n.constructor === Number && !n.hasOwnProperty("square")) return n*n;
+			else throw TypeErorr("Type has to be a number only");
+		}
+
+		function _absolute(n) {
+			if(n.constructor === Number && !n.hasOwnProperty("square")) {
+				if(n > 0) var v = n;
+				else if(n < 0) var v = -1*(n);
+				else if(n == 0) var n = 1;
+				return v;
+			} else throw TypeErorr("Type has to be a number only");
+		}
+
+
+		/* =======================
+		 * ARRAY FUNCTIONS
+		 * =======================
+		 */
 
 		/* Takes a multi-dimensional array as argument and flattens it to a single dimensional array */
 		function _arrayFlatten(arr) {
@@ -324,7 +277,7 @@ var MJ = (function() {
 				throw TypeError("Type should be an array only");
 		}
 
-		function _arrayMax(arr) {
+		function _arrayMin(arr) {
 			if(arr.constructor === Array)
 				return arr.reduce(function(a, b) { return (a < b) ? a : b; });
 			else
@@ -342,7 +295,8 @@ var MJ = (function() {
 		/* Return all public functions */
 		return {
 			// Number Functions
-
+			factorial: _factorial,
+			square: _square,
 
 			// Array Set theory functions
 			arrayFlatten: _arrayFlatten,
