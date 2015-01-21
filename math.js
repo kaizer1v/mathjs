@@ -323,39 +323,17 @@ var MJ = (function() {
 
 		/* returns union along with duplicates of arrays passed in the parameters */
 		function _arrayUnion() {
-			if(arguments && arguments.length == 1) {
-				return arguments[0];
-			} else if(arguments && arguments.length > 1) {
-				var currArr = arguments[0];
-				for(var i = 0; i != arguments.length; i++) {
-					if(arguments[i].constructor === Array) {
-					// 	for(var j = 0; j != arguments[i].length; j++) {
-					// 		if(arguments[i][j] === undefined) continue;
-					// 		currArr.push(arguments[i][j]);
-					// 	}
-					} else {
-						throw TypeError("Type should be an array only");
-					}
-				}
-				return currArr;
-			} else {
-				throw Error("You need to pass atleast 1 argument");
+			if((arguments && arguments.length == 1) || !arguments[1]) return arguments[0];
+			if(arguments && arguments.length == 0) throw Error("You need to pass atleast 1 argument");
+			var tempArr = arguments[0];
+			for(var i = 1; i != arguments.length; i++) {
+				arguments[i].forEach(function(elem) {
+					tempArr.push(elem);
+				});
+				if(arguments[i+1]) _arrayUnion(tempArr, arguments[i+1]);
+				return tempArr;
 			}
-
 		}
-		// Array.prototype.union = function() {
-		// 	var currArr = this
-		// 	;
-		// 	for(i = 0; i != arguments.length; i++) {
-		// 		if(Object.prototype.toString.call(arguments[i]) == "[object Array]") {
-		// 			for(j = 0; j != arguments[i].length; j++) {
-		// 				if(arguments[i][j] === undefined) continue;
-		// 				currArr.push(arguments[i][j]);
-		// 			}
-		// 		}
-		// 	}
-		// 	return currArr;
-		// }
 
 		/* Return all public functions */
 		return {
