@@ -44,7 +44,6 @@ function isArrayLike(obj) {
 }
 
 
-
 /* ============================================= New Version */
 var MJ = (function() {
 
