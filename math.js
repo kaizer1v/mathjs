@@ -52,6 +52,23 @@ var MJ = (function() {
 	function init() {
 
 		/* =======================
+		* MASTER FUNCTIONS
+		* =======================
+		*/
+		function _inherit(fromObj) {
+			// create a temporary "object" which has a prototype property i.e. function
+			function F() {}
+
+			// Attach the object you want to inherit from, to the prototype of the temp object.
+			F.prototype = fromObj;
+
+			// return an instance of inherited object
+			return new F();
+		}
+
+
+
+		/* =======================
 		 * NUMBER FUNCTIONS
 		 * =======================
 		 */
