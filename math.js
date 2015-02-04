@@ -8,7 +8,7 @@ Number.prototype.sqrt = function(guess) {
 	return (goodEnough(m, this)) ? m : this.sqrt(m);
 
 	function improve(guess, x) {
-		return average(guess, (x / guess))
+		return average(guess, (x / guess));
 	}
 	function average(x, y) {
 		return ((x + y) / 2)
@@ -55,17 +55,13 @@ var MJ = (function() {
 		* MASTER FUNCTIONS
 		* =======================
 		*/
-		function _inherit(fromObj) {
-			// create a temporary "object" which has a prototype property i.e. function
-			function F() {}
-
-			// Attach the object you want to inherit from, to the prototype of the temp object.
-			F.prototype = fromObj;
-
-			// return an instance of inherited object
-			return new F();
+		function _extendClass(fromClass) {
+			if(typeof fromClass == "funciton" || (fromClass.constructor && fromClass.constructor === Function)) {
+				function Obj() {};
+				Obj.prototype = new fromClass;
+				return Obj;
+			}
 		}
-
 
 
 		/* =======================
@@ -73,10 +69,18 @@ var MJ = (function() {
 		 * =======================
 		 */
 		/* returns factorials of the number. You can use it like so: */
+		function _isPrime(n) {
+			var factors = _factors(n);
+			if((factors.length == 2) && (factors[1] === n)) return true;
+			else return false;
+		}
+
 		function _factorial(n) {
 			if(n.constructor === Number && !n.hasOwnProperty("factorial")) {
 				if(n <= 1) return 1;
-				return n * _factorial(n - 1);
+				if(!(n in _factorial))
+					_factorial[n] = n * _factorial(n - 1);
+				return _factorial[n];
 			} else throw TypeErorr("Type has to be a number only");
 		}
 
@@ -94,6 +98,22 @@ var MJ = (function() {
 			} else throw TypeErorr("Type has to be a number only");
 		}
 
+		function _remainder(n, d) {
+			return n - (d * Math.floor(n/d));
+		}
+
+		/* produces the factors of a given number */
+		function _factors(n) {
+			var factors = [1, n];
+			for(var i = 2; i <= Math.floor(n/i); i++) {
+				if(_remainder(n, i) === 0 && (n % i == 0))
+					if(i === n/i)
+						factors.push(i);
+					else
+						factors.push(i, n/i);
+			}
+			return factors;
+		}
 
 		/* =======================
 		 * ARRAY FUNCTIONS
@@ -111,7 +131,6 @@ var MJ = (function() {
 			}
 		}
 
-
 		/* returns all unique elements in the array i.e. that doesn't exist more than once. */
 		function _arrayUnique(arr) {
 			if(arr.constructor === Array) {
@@ -123,7 +142,6 @@ var MJ = (function() {
 				throw TypeError("Type should be an array only");
 			}
 		}
-
 
 		/* a - b = returns elements that exist a but not in b. */
 		function _arraySubstract(arr1, arr2) {
@@ -146,7 +164,6 @@ var MJ = (function() {
 				throw TypeError("Type should be an array only");
 			}
 		}
-
 
 		/* Merges two arrays and removes all duplicates. */
 		function _arrayMerge() {
@@ -248,6 +265,24 @@ var MJ = (function() {
 			return arr;
 		}
 
+		function _arrayMean(arr) {
+			if(arr.constructor === Array)
+				return (_arraySum(arr) / arr.length);
+			else
+				throw TypeError("Type should be an array only");
+		}
+
+		function _arrayMode(arr) {
+			if(arr.constructor === Array) {
+				var arrObj;
+				for(var i = 0; i < arr.length; i++) {
+
+				}
+			}
+			else
+				throw TypeError("Type should be an array only");
+		}
+
 		function _arraySum(arr) {
 			if(arr.constructor === Array)
 				return arr.reduce(function(a, b) { return a + b; }, 0);
@@ -302,13 +337,14 @@ var MJ = (function() {
 			} else throw TypeError("Type should be an object only");
 		}
 
-
-
 		/* Return all public functions */
 		return {
 			// Number Functions
 			factorial: _factorial,
 			square: _square,
+			factors: _factors,
+			// primeFactors: _primeFactors,
+			isPrime: _isPrime,
 
 			// Array Set theory functions
 			arrayFlatten: _arrayFlatten,
@@ -326,6 +362,7 @@ var MJ = (function() {
 			arraySum: _arraySum,
 			arrayProd: _arrayProduct,
 			arrayPow: _arrayPow,
+			arrayMean: _arrayMean,
 
 			// Object functionalities
 			objFilter: _filterObject,
