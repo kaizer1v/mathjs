@@ -86,38 +86,6 @@ var MJ = (function() {
 		}
 
 
-		Number.prototype.sqrt = function(guess) {
-			var guess = typeof guess !== "undefined" ? guess : 1,
-			z = (this / guess),
-			m = average(z, guess)
-			;
-			const tolerance = 0.0001;
-
-			return (goodEnough(m, this)) ? m : this.sqrt(m);
-
-			function improve(guess, x) {
-				return average(guess, (x / guess));
-			}
-			function average(x, y) {
-				return ((x + y) / 2)
-			}
-			function goodEnough(guess, x) {
-				return (abs(square(guess) - x) < tolerance) ? true : false
-			}
-			function square(x) {
-				return x*x;
-			}
-			function abs(x) {
-				if(x > 0)
-					var v = x;
-					else if(x < 0)
-						var v = -1*(x);
-						else if(x == 0)
-							var v = 1;
-							return v;
-			}
-		}
-
 
 		var _sqrt = (function() {
 			// private
