@@ -33,6 +33,15 @@ var MJ = (function() {
 			}
 		}
 
+		// This function helps you bind any event to a DOM element
+		var _on = (function() {
+			return function(obj, event, fn) {
+				return obj.addEventListener(event, fn);
+			}
+		})();
+
+
+
 
 		/* =======================
 		 * NUMBER FUNCTIONS
@@ -84,8 +93,6 @@ var MJ = (function() {
 			}
 			return factors;
 		}
-
-
 
 		var _sqrt = (function() {
 			// private
