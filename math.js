@@ -144,6 +144,43 @@ var MJ = (function() {
 		* =======================
 		*/
 
+		/* Shuffles the array randomly and returns the shuffled array */
+		/* This uses the fischer-yates algorithm */
+		function _arrayShuffle(arr) {
+			if(arr && arr.constructor === Array) {
+				var toReturn = [], len = arr.length, i;
+				if(len <= 1) return arr;
+				// algo starts here.
+				while(len) {
+					i = Math.floor(Math.random() * len--);
+					toReturn.push(arr.splice(i, 1)[0]);
+				}
+				return toReturn;
+			} else throw TypeError("Type should be an array only");
+		}
+
+		/* Randomly choose an element from Array */
+		function _arrRandomElem(arr) {
+			if(arr && arr.constructor === Array) {
+				if(arr.length <= 1) return arr;
+				return arr[Math.floor(Math.random() * arr.length)];
+			}
+		}
+
+		/* Creates an array of random integers between the range specified */
+		function _arrayRandom(len, min, max, unique) {
+			var len = (len) ? len : 10,
+					min = (min) ? min : 1,
+					max = (max) ? max : 100,
+					unique = (unique) ? unique : false,
+					toReturn = [], i = 0;
+
+			for(; i <= len; i++) {
+				toReturn.push(Math.floor(Math.random() * (max - min) + min));
+			}
+			return toReturn;
+		}
+
 		/* Takes a multi-dimensional array as argument and flattens it to a single dimensional array */
 		function _arrayFlatten(arr) {
 			if(arr && arr.constructor === Array) {
@@ -392,6 +429,7 @@ var MJ = (function() {
 			arrayHasDuplicates: _arrayHasDuplicates,
 			arrayGetDuplicates: _arrayGetDuplicates,
 			arraySort: _arraySort,
+			arrayRandom: _arrayRandom,
 
 			// Array Math functionalities
 			arrayMax: _arrayMax,
