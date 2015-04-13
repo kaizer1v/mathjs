@@ -173,11 +173,24 @@ var MJ = (function() {
 					min = (min) ? min : 1,
 					max = (max) ? max : 100,
 					unique = (unique) ? unique : false,
-					toReturn = [], i = 0;
+					toReturn = [], tempObj = {}, i = 0;
 
-			for(; i <= len; i++) {
-				toReturn.push(Math.floor(Math.random() * (max - min) + min));
+			if(unique === true) {
+				for(; i < len; i++) {
+					var randomInt = Math.floor(Math.random() * ((max - min) + min));
+					if(tempObj['key_'+ randomInt] === undefined) {
+						tempObj['key_'+ randomInt] = randomInt;
+						toReturn.push(randomInt);
+					} else {
+						i--;
+					}
+				}
+			} else {
+				for(; i < len; i++) {
+					toReturn.push(Math.floor(Math.random() * ((max - min) + min)));
+				}
 			}
+
 			return toReturn;
 		}
 
