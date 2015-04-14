@@ -24,18 +24,16 @@ var MJ = (function() {
 		*/
 		function _extendClass(fromClass) {
 			if(typeof fromClass == "function" || (fromClass.constructor && fromClass.constructor === Function)) {
-				function Obj() {}
+				var Obj = Function;
 				Obj.prototype = new fromClass();
 				return Obj;
 			}
 		}
 
 		// This function helps you bind any event to a DOM element
-		var _on = (function() {
-			return function(obj, event, fn) {
-				return obj.addEventListener(event, fn);
-			};
-		})();
+		var _on = function(obj, event, fn) {
+			return obj.addEventListener(event, fn);
+		};
 
 
 
@@ -169,11 +167,11 @@ var MJ = (function() {
 
 		/* Creates an array of random integers between the range specified */
 		function _arrayRandom(len, min, max, unique) {
-			var len = (len) ? len : 10,
-					min = (min) ? min : 1,
-					max = (max) ? max : 100,
-					unique = (unique) ? unique : false,
-					toReturn = [], tempObj = {}, i = 0;
+			var toReturn = [], tempObj = {}, i = 0;
+			len = (len) ? len : 10;
+			min = (min) ? min : 1;
+			max = (max) ? max : 100;
+			unique = (unique) ? unique : false;
 
 			if(unique === true) {
 				for(; i < len; i++) {
@@ -221,11 +219,8 @@ var MJ = (function() {
 		function _arraySubstract(arr1, arr2) {
 			var biggerArr, smallerArr;
 			if((arr1 && arr2) && (arr1.constructor === Array && arr2.constructor === Array)) {
-				if(arr1 >= arr2) {
-					biggerArr = arr1, smallerArr = arr2;
-				} else {
-					biggerArr = arr2, smallerArr = arr1;
-				}
+				if(arr1 >= arr2) biggerArr = arr1, smallerArr = arr2;
+				else biggerArr = arr2, smallerArr = arr1;
 
 				for(var i = 0; i != biggerArr.length; i++) {
 					for(var j = 0; j != smallerArr.length; j++) {
