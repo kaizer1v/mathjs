@@ -400,6 +400,20 @@ var MJ = (function() {
 		}
 
 
+		//		            n!
+		//		nCr = ---------------
+		//				    (r!)(n - r)!
+		function _combinationsUnique (arr) {
+			var index = 0, pairs = [], arr = _arrayUnique(arr);
+			while(index < arr.length) {
+				for(var i = 0; (i < arr.length && i != index); i++) {
+					pairs.push([arr[i], arr[index]]);
+				}
+				index++;
+			}
+			return pairs;
+		}
+
 		/* =============================
 		* Object Arrays
 		* =============================
@@ -446,6 +460,9 @@ var MJ = (function() {
 			arrayProd: _arrayProduct,
 			arrayPow: _arrayPow,
 			arrayMean: _arrayMean,
+
+			// Permutations & Combinations
+			arrayCombinationsUnique: _combinationsUnique,
 
 			// Object functionalities
 			objFilter: _filterObject,
