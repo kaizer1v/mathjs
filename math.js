@@ -91,6 +91,16 @@ var MJ = (function() {
 			return factors;
 		}
 
+		function _isPerfectSq(n) {
+			var i;
+			for(i = 1; i <= Math.floor(n/i); i++) {
+				if(n % i === 0)
+					if(i === n/i)
+						return true;
+			}
+			return false;
+		}
+
 		var _sqrt = (function() {
 			// private
 			var tolerance = 0.0001;
@@ -441,6 +451,7 @@ var MJ = (function() {
 			// primeFactors: _primeFactors,
 			isPrime: _isPrime,
 			sqrt: _sqrt,
+			isPerfectSq: _isPerfectSq,
 
 			// Array Set theory functions
 			arrayFlatten: _arrayFlatten,
