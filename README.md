@@ -6,4 +6,7 @@ MathJs is a small javascript library for performing set theory and basic mathema
 Simply include the mathjs.js file into your html
 ```html
 <script type="text/javascript" src="mathjs.js"></script>
+<script type="text/javascript">
+  var math = MJ.getInstance();
+</script>
 ```
