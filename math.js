@@ -18,7 +18,7 @@ var MJ = (function() {
 
 	function init() {
 
-		/* =======================
+		/* ======================
 		* MASTER FUNCTIONS
 		* =======================
 		*/
@@ -36,7 +36,17 @@ var MJ = (function() {
 		};
 
 
-
+		/* =======================
+		* STRING FUNCTIONS
+		* =======================
+		*/
+		/* returns the reverse of a given string */
+		function _reverseString(str) {
+			return str.split('').sort(function(a, b) {
+				return b - a;
+			}).join('');
+		}
+		
 
 		/* =======================
 		* NUMBER FUNCTIONS
