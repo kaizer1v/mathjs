@@ -45,7 +45,24 @@ var MJ = (function() {
 			return str.split('').sort(function(a, b) {
 				return b - a;
 			}).join('');
-		}
+		},
+		
+		/* returns the title case of a respective sentence 
+		 * Eg: _titleCase("sHoRt AnD sToUt") should return "Short And Stout".
+		 */
+		function _titleCase(str) {
+			// 1. Take the given sentence and turn it to lower case completely.
+			// 2. Split the sentence into words by splitting it with spaces.
+			// 3. Now, for every word, map an array into an array of characters. (will created 2D array)
+			// 4. For every array of chars of each word, replace the first char with the upper case of its own character and join them back to create an arary of words.
+			// 5. Finally join all the words back to form a sentence.
+			return str.toLowerCase().split(' ').map(function(v, k) {
+				return v.split('');
+			}).map(function(v, k) {
+				v[0] = v[0].toUpperCase();
+				return v.join('');
+			}).join(' ');
+		},
 		
 
 		/* =======================
