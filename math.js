@@ -20,6 +20,10 @@ var MJ = (function() {
       obj.length < Math.pow(2, 32)
     ) ? true : false;
   }
+
+  function isObjType(obj) {
+    return obj.constructor === Object;
+  }
   
   // This function helps you bind any event to a DOM element
   var _on = function(obj, event, fn) {
@@ -31,12 +35,6 @@ var MJ = (function() {
   * STRING FUNCTIONS
   * =======================
   */
-  /* returns the reverse of a given string */
-  function _reverseString(str) {
-    return str.split('').sort(function(a, b) {
-      return b - a;
-    }).join('');
-  }
   
   /* returns the title case of a respective sentence 
    * Eg: _titleCase("sHoRt AnD sToUt") should return "Short And Stout".
@@ -62,6 +60,7 @@ var MJ = (function() {
   */
   /* returns factorials of the number. You can use it like so: */
   function _isPrime(n) {
+    if(n === 0) return false;
     var factors = _factors(n);
     if((factors.length == 2) && (factors[1] === n)) return true;
     else return false;
