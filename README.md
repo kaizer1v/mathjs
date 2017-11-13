@@ -8,6 +8,6 @@ Simply include the mathjs.js file into your html
 ```html
 <script type="text/javascript" src="mathjs.js"></script>
 <script type="text/javascript">
-  var math = MJ.getInstance();
+  MJ.isPrime(0);    // false
 </script>
 ```
