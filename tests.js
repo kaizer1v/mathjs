@@ -76,3 +76,11 @@ test2(MJ.arrayDiff([], []), [])
 test2(MJ.arrayDiff([1, 2], [2, 1]), [])
 test2(MJ.arrayDiff([1, 2, 3], [2, 1]), [3])
 test2(MJ.arrayDiff([false, true], ['a', 'b']), [false, true])
+
+
+console.log('-------------------', 'arrayUnion');
+// arrayUnion
+test2(MJ.arrayUnion([1], [2, [3]]), [1, 2, [3]])
+test2(MJ.arrayUnion([], [2, 3]), [2, 3])
+test2(MJ.arrayUnion([], []), [])
+test2(MJ.arrayUnion([1, 1, 1], [2, 2, 2]), [1, 2])
