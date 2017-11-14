@@ -252,23 +252,13 @@ var MJ = (function() {
   }
 
   /* a - b = returns elements that exist a but not in b. */
-  function _arraySubstract(arr1, arr2) {
-    var biggerArr, smallerArr;
-    if((arr1 && arr2) && (arr1.constructor === Array && arr2.constructor === Array)) {
-      if(arr1 >= arr2) biggerArr = arr1, smallerArr = arr2;
-      else biggerArr = arr2, smallerArr = arr1;
-
-      for(var i = 0; i != biggerArr.length; i++) {
-        for(var j = 0; j != smallerArr.length; j++) {
-          if(smallerArr[j] === biggerArr[i]) {
-            delete biggerArr[i];
-          }
-        }
-      }
-      return biggerArr;
-    } else {
-      throw TypeError("Type should be an array only");
-    }
+  function _arrayDiff(arr1, arr2) {
+    var toReturn = [];
+    arr1.filter(function(val, index) {
+      if(arr2.indexOf(val) < 0)
+        toReturn.push(val);
+    });
+    return toReturn
   }
 
   /* Merges two arrays and removes all duplicates. */
@@ -487,7 +477,7 @@ var MJ = (function() {
     // arrayMerge: _arrayMerge,
     arrayUnique: _arrayUnique,
     arrayEqual: _arraysEqual,
-    arraySubstract: _arraySubstract,
+    arrayDiff: _arrayDiff,
     arrayUnion: _arrayUnion,
     arrayHasDuplicates: _arrayHasDuplicates,
     arrayGetDuplicates: _arrayGetDuplicates,
