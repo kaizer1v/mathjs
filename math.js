@@ -242,6 +242,15 @@ var MJ = (function() {
     }
   }
 
+  /* returns if two arrays are exactly the same or not. */
+  function _arraysEqual(arr1, arr2) {
+    if(arr1.length !== arr2.length) return false;
+    for(var i = arr1.length; i--;) {
+      if(arr1[i] !== arr2[i]) return false;
+    }
+    return true;
+  }
+
   /* a - b = returns elements that exist a but not in b. */
   function _arraySubstract(arr1, arr2) {
     var biggerArr, smallerArr;
@@ -263,9 +272,10 @@ var MJ = (function() {
   }
 
   /* Merges two arrays and removes all duplicates. */
+  // TODO: goes into infinite loop
   function _arrayMerge() {
     var currArr;
-    if(arguments && arguments.length == 1) {
+    /*if(arguments && arguments.length == 1) {
       return arguments[0];
     } else if(arguments && arguments.length > 1) {
       currArr = arguments[0];
@@ -282,7 +292,7 @@ var MJ = (function() {
     } else {
       throw Error("You need to pass atleast 1 argument");
     }
-    return _arrayUnique(currArr);
+    return _arrayUnique(currArr);*/
   }
 
   /* returns all types of objects containing in the array */
@@ -308,7 +318,8 @@ var MJ = (function() {
     }
   }
 
-  /* returns true of "elem" is present more than once in "arr", if not returns false */
+  /* returns true of "elem" is present more than once in "arr",
+      if not returns false */
   function _arrayHasDuplicates(arr, elem) {
     if(arr.constructor === Array) {
       var len = arr.length,
@@ -473,16 +484,15 @@ var MJ = (function() {
 
     // Array Set theory functions
     arrayFlatten: _arrayFlatten,
-    arrayMerge: _arrayMerge,
+    // arrayMerge: _arrayMerge,
     arrayUnique: _arrayUnique,
+    arrayEqual: _arraysEqual,
     arraySubstract: _arraySubstract,
     arrayUnion: _arrayUnion,
     arrayHasDuplicates: _arrayHasDuplicates,
     arrayGetDuplicates: _arrayGetDuplicates,
     arraySort: _arraySort,
     arrayRandom: _arrayRandom,
-
-    // Array Math functionalities
     arrayMax: _arrayMax,
     arrayMin: _arrayMin,
     arraySum: _arraySum,
