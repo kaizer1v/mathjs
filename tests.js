@@ -83,4 +83,27 @@ console.log('-------------------', 'arrayUnion');
 test2(MJ.arrayUnion([1], [2, [3]]), [1, 2, [3]])
 test2(MJ.arrayUnion([], [2, 3]), [2, 3])
 test2(MJ.arrayUnion([], []), [])
-test2(MJ.arrayUnion([1, 1, 1], [2, 2, 2]), [1, 2])
+test2(MJ.arrayUnion([2, 2, 2], [1, 1, 1]), [2, 2, 2, 1, 1, 1])
+
+
+console.log('-------------------', 'arrayHasDuplicates');
+// arrayHasDuplicates
+test2(MJ.arrayHasDuplicates([1, 2, 3, 3], 3), true)
+test2(MJ.arrayHasDuplicates([1, 2, 3, 3], ''), false)
+test2(MJ.arrayHasDuplicates([1], 1), false)
+test2(MJ.arrayHasDuplicates([0, 1, true, false, undefined, undefined], undefined), true)
+
+
+console.log('-------------------', 'arrayGetDuplicates');
+test2(MJ.arrayGetDuplicates([1, 1, 1]), [1])
+test2(MJ.arrayGetDuplicates([1, 1, 1, 2, 2]), [1, 2])
+test2(MJ.arrayGetDuplicates([]), [])
+test2(MJ.arrayGetDuplicates([0, 1, 2]), [])
+
+
+console.log('-------------------', 'arraySort');
+test2(MJ.arraySort([1, 1, 1]), [1, 1, 1])
+test2(MJ.arraySort([false, 'a', true, 1, 0]), [false, 'a', true, 0, 1])
+test2(MJ.arraySort([]), [])
+test2(MJ.arraySort(['z', 'g', 'b', 'm']), ['b', 'g', 'm', 'z'])   // sorts strings also
+test2(MJ.arraySort([undefined, NaN, false, 1, true, 0]), [0, NaN, false, 1, true, undefined])
