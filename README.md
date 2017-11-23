@@ -103,7 +103,7 @@ MJ.arrayGetDuplicates([1, 1, 1, 51, 51, 2])
 
 ### arrayMean
 
-Given an array of numbers, 
+Given an array of numbers, computes the mean and returns it.
 
 ```javascript
 MJ.arrayMean([1, 2, 3, 100, 101, 202])
