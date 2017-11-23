@@ -1,4 +1,10 @@
-var MJ = (function() {
+var MJ = (function(window) {
+
+  // ensure there is only one instance of MJ
+  if(window.MJ !== undefined) {
+    return MJ;
+  }
+
   /* ======================
    * MASTER FUNCTIONS
    * =======================
@@ -497,4 +503,4 @@ var MJ = (function() {
     objFilter: _filterObject,
     objGetVal: _getObjectVal
   }
-})();
+})(this);     // when running on browser, you will get `this` = `window`.
