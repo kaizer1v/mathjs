@@ -36,3 +36,15 @@ MJ.arrayUnique([1, 1, 'b', false, false, true, 'b', undefined, undefined])
 
 // returns [1, "b", false, true, undefined]
 ```
+
+### arrayEqual
+
+Given two set of arrays, returns true if both arrays are exactly the same, else
+returns false.
+
+```javascript
+MJ.arrayEqual([1, 123, false], ["1", 123, false])
+// returns false, where as
+MJ.arrayEqual([1, 123, false], [1, 123, false])
+// will return true
+```
