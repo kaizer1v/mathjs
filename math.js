@@ -319,6 +319,9 @@ var MJ = (function(window) {
   /* returns true of "elem" is present more than once in "arr",
       if not returns false */
   function _arrayHasDuplicates(arr, elem) {
+    if(!elem) {
+      return _arrayGetDuplicates(arr).length !== 0;
+    }
     if(arr.constructor === Array) {
       var len = arr.length,
           pos = 0,
