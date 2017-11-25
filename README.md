@@ -112,3 +112,15 @@ MJ.arrayMean([1, 2, 3, 100, 101, 202])
 MJ.arrayMean([false, 'abc'])
 // NaN
 ```
+
+### arrayEqual
+
+Given two set of arrays, returns true if both arrays are exactly the same, else
+returns false.
+
+```javascript
+MJ.arrayEqual([1, 123, false], ["1", 123, false])
+// returns false, where as
+MJ.arrayEqual([1, 123, false], [1, 123, false])
+// will return true
+```
