@@ -515,6 +515,4 @@ var MJ = (function(window) {
   }
 })(this); // when running on browser, you will get `this` = `window`.
 
-module.exports = {
-  MJ: MJ
-}
+module.exports = MJ

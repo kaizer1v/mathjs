@@ -1,5 +1,5 @@
 var assert = require('assert');
-var MJ = require('../math.js')['MJ'];
+var MJ = require('../math.js');
 
 describe('testing titleCase', function() {
   it('`aBcd efGH` when given `Abcd Efgh`', function() {
