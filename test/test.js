@@ -19,6 +19,12 @@ describe('testing titleCase', function() {
   })
 })
 
+describe('testing factors', function() {
+  it('1 should return [1]', function() {
+    assert.equal(MJ.factors([1]), [1])
+  })
+})
+
 describe('testing isPrime', function() {
   it('1 should return true', function() {
     assert.equal(MJ.isPrime(1), true)
