@@ -4,7 +4,7 @@
   "description": "MathJs is a small javascript library for performing set theory and basic mathematical functions on numbers and arrays.",
   "main": "math.js",
   "directories": {
-    "test": "mocha"
+    "test": "mocha tests/test.js"
   },
   "dependencies": {},
   "devDependencies": {
