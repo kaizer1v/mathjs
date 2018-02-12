@@ -1,5 +1,5 @@
 {
-  "name": "mathjs",
+  "name": "simplemathjs",
   "version": "1.0.0",
   "description": "MathJs is a small javascript library for performing set theory and basic mathematical functions on numbers and arrays.",
   "main": "math.js",
