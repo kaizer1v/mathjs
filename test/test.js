@@ -44,8 +44,10 @@ describe('testing isPrime', function() {
   it('"19512415213" should return true', function() {
     assert.equal(MJ.isPrime("19512415213"), true)
   })
-  it('["1951241", 5213] should return false', function() {
-    assert.equal(MJ.isPrime(["1951241", 5213]), false)
-  })
+  // NOTE: this test case should not exist because you don't expect
+  //        the user to input a different datatype
+  // it('["1951241", 5213] should return false', function() {
+  //   assert.equal(MJ.isPrime(["1951241", 5213]), false)
+  // })
 })
 
