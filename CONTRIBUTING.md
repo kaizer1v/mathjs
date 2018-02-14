@@ -3,7 +3,7 @@
 ## Cloning and Setup
 Clone this repository and run the following commands first
 
-```sh
+```bash
 npm build
 npm test
 ```
