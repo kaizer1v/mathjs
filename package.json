@@ -14,6 +14,7 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
+    "lint": "eslint src/",
     "test": "mocha",
     "build": "rollup -c",
     "dev": "rollup -c -w"
