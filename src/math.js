@@ -1,11 +1,3 @@
-export function isPrime(n) {
-  /* returns factorials of the number. You can use it like so: */
-  if (n === 0) return false
-  var factors = factors(n)
-  if ((factors.length == 2) && (factors[1] === n)) return true
-  else return false
-}
-
 export function factorial(n) {
   if (n.constructor === Number && !n.hasOwnProperty('factorial')) {
     if (n <= 1) return 1
@@ -46,6 +38,14 @@ export function factors(n) {
         factors.push(i, n / i)
   }
   return factors
+}
+
+export function isPrime(n) {
+  /* returns factorials of the number. You can use it like so: */
+  if (n === 0) return false
+  var facts = factors(n)
+  if ((facts.length == 2) && (facts[1] === n)) return true
+  else return false
 }
 
 export function isPerfectSq(n) {
