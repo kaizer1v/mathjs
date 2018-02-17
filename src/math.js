@@ -9,9 +9,9 @@ export function isPrime(n) {
 export function factorial(n) {
   if (n.constructor === Number && !n.hasOwnProperty('factorial')) {
     if (n <= 1) return 1
-    if (!(n in _factorial))
-      _factorial[n] = n * _factorial(n - 1)
-    return _factorial[n]
+    if (!(n in factorial))
+      factorial[n] = n * factorial(n - 1)
+    return factorial[n]
   } else throw TypeErorr('Type has to be a number only')
 }
 
@@ -87,16 +87,6 @@ export var sqrt = (function() {
     else if (x === 0)
       v = 1
     return v
-  }
-
-  function isPerfectSq(n) {
-    var i
-    for (i = 1; i <= Math.floor(n / i); i++) {
-      if (n % i === 0)
-        if (i === n / i)
-          return true
-    }
-    return false
   }
 
   // public
@@ -186,7 +176,7 @@ export function arrayFlatten(arr) {
   /* Takes a multi-dimensional array as argument and flattens it to a single dimensional array */
   if (arr && arr.constructor === Array) {
     return arr.reduce(function(acc, x) {
-      return acc.concat(x && x.constructor === Array ? _arrayFlatten(x) : x)
+      return acc.concat(x && x.constructor === Array ? arrayFlatten(x) : x)
     }, [])
   } else {
     throw TypeError('Type should be an array only')
@@ -224,9 +214,9 @@ export function arrayDiff(arr1, arr2) {
   return toReturn
 }
 
-export function arrayMerge() {
+function arrayMerge() {
   /* Merges two arrays and removes all duplicates. */
-// TODO: goes into infinite loop
+  // TODO: goes into infinite loop
   var currArr
   if(arguments && arguments.length == 1) {
     return arguments[0]
@@ -245,7 +235,7 @@ export function arrayMerge() {
   } else {
     throw Error('You need to pass atleast 1 argument')
   }
-  return _arrayUnique(currArr)
+  return arrayUnique(currArr)
 }
 
 export function arrayElemTypes(arr) {
@@ -268,16 +258,16 @@ export function arrayUnion() {
     for (j = 0; j != arguments[i].length; j++) {
       tempArr.push(arguments[i][j])
     }
-    if (arguments[i + 1]) _arrayUnion(tempArr, arguments[i + 1])
+    if (arguments[i + 1]) arrayUnion(tempArr, arguments[i + 1])
     return tempArr
   }
 }
 
 export function arrayHasDuplicates(arr, elem) {
-    /* returns true of "elem" is present more than once in "arr",
+  /* returns true of "elem" is present more than once in "arr",
     if not returns false */
   if (!elem) {
-    return _arrayGetDuplicates(arr).length !== 0
+    return arrayGetDuplicates(arr).length !== 0
   }
   if (arr.constructor === Array) {
     var len = arr.length,
@@ -297,14 +287,14 @@ export function arrayGetDuplicates(arr) {
   if (arr.constructor === Array) {
     toReturn = []
     for (var i = 0; i != arr.length; i++) {
-      if (_arrayHasDuplicates(arr, arr[i])) {
+      if (arrayHasDuplicates(arr, arr[i])) {
         toReturn.push(arr[i])
       }
     }
   } else {
     throw TypeError('Type should be an array only')
   }
-  return _arrayUnique(toReturn)
+  return arrayUnique(toReturn)
 }
 
 export function arraySort(arr, ascDesc) {
@@ -336,7 +326,7 @@ export function arrayMean(arr) {
   /* Statistics based */
   /* returns mean of all numeric data in arr */
   if (arr.constructor === Array)
-    return (_arraySum(arr) / arr.length)
+    return (arraySum(arr) / arr.length)
   else
     throw TypeError('Type should be an array only')
 }
@@ -387,7 +377,7 @@ export function arrayMin(arr) {
 
 export function arrayPow(arr) {
   /* returns cumulative power of all numbers in arr like: */
-  /* _arrayPow([a, b, c]) = ((a^b)^c) and so on. */
+  /* arrayPow([a, b, c]) = ((a^b)^c) and so on. */
   if (arr.constructor === Array)
     return arr.reduce(function(a, b) { return Math.pow(a, b) })
   else
