@@ -7,14 +7,14 @@ export default [
     output: {
       file: 'dist/math.min.js',
       format: 'iife',
-      name: 'mathjs'
+      name: 'MJ'
     },
   }, {                                    // dev version (un-minified)
     input: 'src/math.js',
     output: {
       file: 'dist/math.js',
       format: 'iife',
-      name: 'mathjs'
+      name: 'MJ'
     }
   }
 ]

@@ -1,4 +1,4 @@
-export default function isPrime(n) {
+export function isPrime(n) {
   /* returns factorials of the number. You can use it like so: */
   if (n === 0) return false
   var factors = _factors(n)
@@ -107,3 +107,21 @@ export var sqrt = (function() {
     return (goodEnough(m, n)) ? m : sqrt(n, m)
   }
 })()
+
+
+/* =======================
+ * STRING FUNCTIONS
+ * =======================
+ */
+
+/* returns the title case of a respective sentence 
+ * Eg: titleCase("sHoRt AnD sToUt") should return "Short And Stout".
+ */
+export function titleCase(str) {
+  return (str !== '') ? str.trim().toLowerCase().split(' ').map(function(v) {
+    return v.split('')
+  }).map(function(v) {
+    v[0] = (v == '') ? '' : v[0].toUpperCase()
+    return v.join('')
+  }).join(' ') : ''
+}
