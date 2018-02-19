@@ -1,31 +1,31 @@
-var assert = require('assert');
-var MJ = require('../math.one.js');
-
-describe('testing titleCase', function() {
-  it('`aBcd efGH` when given `Abcd Efgh`', function() {
+var assert = require('assert')
+var MJ = require('../dist/math')
+console.log(MJ)
+/*
+describe('titleCase', function() {
+  it('should convert to title case for any caseType', function() {
     assert.equal(MJ.titleCase('aBcd efGH'), 'Abcd Efgh');
-  })
-  it('`Abcd Efgh` when given `aBcd efGH`', function() {
-    assert.equal(MJ.titleCase(''), '');
-  })
-  it('`Abcd Efgh` when given `Abcd`', function() {
-    assert.equal(MJ.titleCase('ABCD'), 'Abcd');
-  })
-  it('`Abcd Efgh` when given `Abcd Efgh`', function() {
     assert.equal(MJ.titleCase('abcd'), 'Abcd');
-  })
-  it('`Abcd Efgh` when given `Abcd`', function() {
+    assert.equal(MJ.titleCase('ABCD'), 'Abcd');
     assert.equal(MJ.titleCase(' aBcD '), 'Abcd');
   })
-})
-
-describe('testing factors', function() {
-  it('1 should return [1]', function() {
-    assert.equal(MJ.factors([1]), [1])
+  it('should strip spaces and convert to titlecases', function() {
+    assert.strictEqual(MJ.titleCase('    Abc   dEF'), '');
+    assert.strictEqual(MJ.titleCase(''), '');
+    assert.strictEqual(MJ.titleCase(' aBcD '), 'Abcd');
   })
 })
 
-describe('testing isPrime', function() {
+describe('factors', function() {
+  it('', function() {
+    assert.deepEqual(MJ.factors([1]), [1])
+    assert.deepEqual(MJ.factors([0]), [0])
+    assert.deepEqual(MJ.factors([]), [])
+    assert.deepEqual(MJ.factors(['1', '2']), [])
+  })
+})
+
+describe('isPrime', function() {
   it('1 should return true', function() {
     assert.equal(MJ.isPrime(1), true)
   })
@@ -51,3 +51,4 @@ describe('testing isPrime', function() {
   // })
 })
 
+*/
