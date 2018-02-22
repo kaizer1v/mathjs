@@ -1,5 +1,5 @@
 export function absolute(n) {
-  if (n.constructor === Number && !n.hasOwnProperty('square')) {
+  if (n.constructor === Number) {
     var v
     if (n > 0) v = n
     else if (n < 0) v = -1 * (n)

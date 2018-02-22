@@ -6,14 +6,14 @@ export default [
     plugins: [uglify()],
     output: {
       file: 'dist/math.min.js',
-      format: 'iife',
+      format: 'umd',
       name: 'MJ'
     },
   }, {                                    // dev version (un-minified)
     input: 'src/math.js',
     output: {
       file: 'dist/math.js',
-      format: 'iife',
+      format: 'umd',
       name: 'MJ'
     }
   }

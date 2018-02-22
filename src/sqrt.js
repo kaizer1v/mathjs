@@ -1,6 +1,5 @@
 import './absolute'
 import './mean'
-import {square} from './power'
 
 export var sqrt = (function() {
   // private
@@ -8,6 +7,11 @@ export var sqrt = (function() {
 
   function improve(guess, x) {
     return mean(guess, (x / guess))
+  }
+
+  function square(n) {
+    if (n.constructor === Number && !n.hasOwnProperty('square')) return n * n
+    else throw TypeErorr('Type has to be a number only')
   }
 
   function goodEnough(guess, x) {

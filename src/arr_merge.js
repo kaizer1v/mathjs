@@ -1,5 +1,10 @@
 import './arr_unique'
+import './arr_flatten'
 
 function arrayMerge() {
-  arguments.
+  var _arr = []
+  arguments.forEach(function(arr) {
+    return _arr.concat(arr)
+  })
+  return arrayUnique(arrayFlatten(_arr))
 }
