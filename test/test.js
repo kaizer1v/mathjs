@@ -1,30 +1,59 @@
 var assert = require('assert')
-var MJ = require('../dist/math')
-console.log(MJ)
-/*
+var chai = require('chai')
+var MJ = require('../dist/math.js')
+
+/* Assert functions !!
+  fail: [Function: fail],
+  AssertionError: [Function: AssertionError],
+  ok: [Circular],
+  equal: [Function: equal],
+  notEqual: [Function: notEqual],
+  deepEqual: [Function: deepEqual],
+  deepStrictEqual: [Function: deepStrictEqual],
+  notDeepEqual: [Function: notDeepEqual],
+  notDeepStrictEqual: [Function: notDeepStrictEqual],
+  strictEqual: [Function: strictEqual],
+  notStrictEqual: [Function: notStrictEqual],
+  throws: [Function: throws],
+  doesNotThrow: [Function: doesNotThrow],
+  ifError: [Function: ifError] }
+
+*/
+console.log(chai);
+
 describe('titleCase', function() {
   it('should convert to title case for any caseType', function() {
-    assert.equal(MJ.titleCase('aBcd efGH'), 'Abcd Efgh');
-    assert.equal(MJ.titleCase('abcd'), 'Abcd');
-    assert.equal(MJ.titleCase('ABCD'), 'Abcd');
-    assert.equal(MJ.titleCase(' aBcD '), 'Abcd');
+    assert.equal(MJ.titleCase('aBcd efGH'), 'Abcd Efgh')
+    assert.equal(MJ.titleCase('abcd'), 'Abcd')
+    assert.equal(MJ.titleCase('ABCD'), 'Abcd')
+    assert.equal(MJ.titleCase(' aBcD '), 'Abcd')
   })
   it('should strip spaces and convert to titlecases', function() {
-    assert.strictEqual(MJ.titleCase('    Abc   dEF'), '');
-    assert.strictEqual(MJ.titleCase(''), '');
-    assert.strictEqual(MJ.titleCase(' aBcD '), 'Abcd');
+    assert.equal(MJ.titleCase('    Abc   dEF'), 'Abc Def')
+    assert.equal(MJ.titleCase(''), '')
+    assert.equal(MJ.titleCase(' aBcD '), 'Abcd')
+  })
+})
+
+describe('arrayUnique', function() {
+  it('should return an array of unique elements in it', function() {
+    assert.deepEqual(MJ.arrayUnique([]), [])
+    chai.expect(MJ.arrayUnique([1])).to.deep.equal([1])
+    chai.expect(MJ.arrayUnique([1, 1, 1, 1])).to.deep.equal([1])
+    chai.expect(MJ.arrayUnique([undefined, null, null, true, -1, 'unique', false, true]))
+      .to.have.members([undefined, null, true, false, 'unique', -1])
   })
 })
 
 describe('factors', function() {
-  it('', function() {
-    assert.deepEqual(MJ.factors([1]), [1])
-    assert.deepEqual(MJ.factors([0]), [0])
-    assert.deepEqual(MJ.factors([]), [])
-    assert.deepEqual(MJ.factors(['1', '2']), [])
+  it('find prime factors of a number', function() {
+    chai.expect(MJ.factors(1)).to.deep.equal([1])
+    chai.expect(MJ.factors(0)).to.deep.equal([1, 0])
+    chai.expect(MJ.factors(-1)).to.deep.equal([1, -1])
   })
 })
 
+/*
 describe('isPrime', function() {
   it('1 should return true', function() {
     assert.equal(MJ.isPrime(1), true)
