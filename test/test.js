@@ -46,10 +46,11 @@ describe('arrayUnique', function() {
 })
 
 describe('factors', function() {
-  it('find prime factors of a number', function() {
+  it('find posiive prime factors of a number', function() {
     chai.expect(MJ.factors(1)).to.deep.equal([1])
     chai.expect(MJ.factors(0)).to.deep.equal([1, 0])
-    chai.expect(MJ.factors(-1)).to.deep.equal([1, -1])
+    chai.expect(MJ.factors(-10)).to.have.members([1, 2, 5, 10])
+    chai.expect(MJ.factors(100)).to.have.members([1, 100, 2, 50, 4, 25, 5, 20, 10])
   })
 })
 

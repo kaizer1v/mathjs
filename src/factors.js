@@ -1,8 +1,10 @@
 import {arrayUnique} from './arr_unique'
+import {absolute} from './absolute'
 
 export function factors(n) {
   /* produces the factors of a given number */
   if(n.constructor !== Number) throw TypeErorr('Type has to be a number only')
+  n = absolute(n)
   var factors = [1, n],
       i = 2
   for (; i <= Math.floor(n / i); i++) {
