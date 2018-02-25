@@ -1,3 +1,5 @@
+import {arrayUnique} from './arr_unique'
+
 export function factors(n) {
   /* produces the factors of a given number */
   if(n.constructor !== Number) throw TypeErorr('Type has to be a number only')
@@ -9,5 +11,5 @@ export function factors(n) {
       else factors.push(i, n / i)
     }
   }
-  return factors
+  return arrayUnique(factors)
 }

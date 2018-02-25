@@ -1,4 +1,4 @@
-import './factors'
+import {factors} from './factors'
 
 export function isPrime(n) {
   /* returns factorials of the number. You can use it like so: */

@@ -1,4 +1,4 @@
-export default function arrayFlatten(arr) {
+export function arrayFlatten(arr) {
  /* Takes a multi-dimensional array as
     argument and flattens it to a single dimensional array
   */
