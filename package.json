@@ -1,6 +1,6 @@
 {
   "name": "simplemathjs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MathJs is a small javascript library for performing set theory and basic mathematical functions on numbers and arrays.",
   "main": "dist/math.js",
   "directories": {
@@ -8,8 +8,8 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.17.0",
-    "mocha": "^5.0.0",
+    "eslint": "^4.18.1",
+    "mocha": "^5.0.1",
     "rollup": "^0.55.5",
     "rollup-plugin-uglify": "^3.0.0"
   },
