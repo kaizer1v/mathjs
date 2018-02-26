@@ -45,12 +45,30 @@ describe('arrayUnique', function() {
   })
 })
 
+describe('absolute', function() {
+  it('should return the absolute of a number', function() {
+    assert.deepEqual(MJ.absolute(0), 0)
+    assert.deepEqual(MJ.absolute(-1), 1)
+    assert.deepEqual(MJ.absolute(1), 1)
+  })
+})
+
 describe('factors', function() {
-  it('find posiive prime factors of a number', function() {
+  it('should return posiive prime factors of a number', function() {
     chai.expect(MJ.factors(1)).to.deep.equal([1])
     chai.expect(MJ.factors(0)).to.deep.equal([1, 0])
     chai.expect(MJ.factors(-10)).to.have.members([1, 2, 5, 10])
     chai.expect(MJ.factors(100)).to.have.members([1, 100, 2, 50, 4, 25, 5, 20, 10])
+  })
+})
+
+describe('isPrime', function() {
+  it('should say whether a number is positive prime or not', function() {
+    assert.deepEqual(MJ.isPrime(0), false)
+    assert.deepEqual(MJ.isPrime(1), false)
+    assert.deepEqual(MJ.isPrime(-11), true)
+    assert.deepEqual(MJ.isPrime(13), true)
+    assert.deepEqual(MJ.isPrime(25), false)
   })
 })
 
