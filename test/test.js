@@ -18,8 +18,8 @@ var MJ = require('../dist/math.js')
   doesNotThrow: [Function: doesNotThrow],
   ifError: [Function: ifError] }
 
+  console.log(chai)
 */
-console.log(chai);
 
 describe('titleCase', function() {
   it('should convert to title case for any caseType', function() {
@@ -32,6 +32,14 @@ describe('titleCase', function() {
     assert.equal(MJ.titleCase('    Abc   dEF'), 'Abc Def')
     assert.equal(MJ.titleCase(''), '')
     assert.equal(MJ.titleCase(' aBcD '), 'Abcd')
+  })
+})
+
+describe('remainder', function() {
+  it('should return the remainder when a numerator is divided by a denominator', function() {
+    chai.expect(MJ.remainder(10, 5)).to.deep.equal(0)
+    chai.expect(MJ.remainder(0, 0)).to.deep.equal(NaN)
+    chai.expect(MJ.remainder(10, -4)).to.deep.equal(-2)
   })
 })
 
@@ -63,7 +71,7 @@ describe('factors', function() {
 })
 
 describe('isPrime', function() {
-  it('should say whether a number is positive prime or not', function() {
+  it('should return whether a number is positive prime or not', function() {
     assert.deepEqual(MJ.isPrime(0), false)
     assert.deepEqual(MJ.isPrime(1), false)
     assert.deepEqual(MJ.isPrime(-11), true)
@@ -72,31 +80,36 @@ describe('isPrime', function() {
   })
 })
 
-/*
-describe('isPrime', function() {
-  it('1 should return true', function() {
-    assert.equal(MJ.isPrime(1), true)
+describe('arrayFlatten', function() {
+  it('should return a flat (single-dimension) array of elements', function() {
+    chai.expect(MJ.arrayFlatten([1, [2, 3, [4, 5], [6]], [7, 8], 9])).to.have.members([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    chai.expect(MJ.arrayFlatten([[[1], 1]])).to.deep.equal([1, 1])
+    chai.expect(MJ.arrayFlatten([[[]]])).to.deep.equal([])
   })
-  it('0 should return false', function() {
-    assert.equal(MJ.isPrime(0), false)
-  })
-  it('-1 should return true', function() {
-    assert.equal(MJ.isPrime(-1), true)
-  })
-  it('13 should return true', function() {
-    assert.equal(MJ.isPrime(13), true)
-  })
-  it('1951241521 should return false', function() {
-    assert.equal(MJ.isPrime(1951241521), false)
-  })
-  it('"19512415213" should return true', function() {
-    assert.equal(MJ.isPrime("19512415213"), true)
-  })
-  // NOTE: this test case should not exist because you don't expect
-  //        the user to input a different datatype
-  // it('["1951241", 5213] should return false', function() {
-  //   assert.equal(MJ.isPrime(["1951241", 5213]), false)
-  // })
 })
 
+describe('arrayDuplicates', function() {
+  it('should return an array of all duplicate elements in a given array', function() {
+
+  })
+})
+
+/*
+describe('arrayDuplicates', function() {
+  it('should return ...', function() {
+    
+  })
+})
+
+describe('arrayDuplicates', function() {
+  it('should return ...', function() {
+    
+  })
+})
+
+describe('arrayDuplicates', function() {
+  it('should return ...', function() {
+    
+  })
+})
 */

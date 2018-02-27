@@ -9,4 +9,6 @@ export {remainder} from './remainder'
 export {titleCase} from './str_titlecase'
 export {arrayFlatten} from './arr_flatten'
 export {arrayUnique} from './arr_unique'
+// export {arrayGetDuplicates} from './arr_duplicates'
+// export {arrayHasDuplicates} from './arr_duplicates'
 
