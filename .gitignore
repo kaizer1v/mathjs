@@ -9,6 +9,9 @@
 # Distribution Versions
 dist/
 
+# This is only for localhost testing purposes
+index.html
+
 # Backup files
 ~$*
 *~
