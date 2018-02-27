@@ -88,13 +88,43 @@ describe('arrayFlatten', function() {
   })
 })
 
+describe('arrayDiff', function() {
+  it('should return an array of elements which are present in the left but not in right', function() {
+    chai.expect(MJ.arrayDiff([], [])).to.deep.equal([])
+    chai.expect(MJ.arrayDiff([1, 2], [2, 1])).to.deep.equal([])
+    chai.expect(MJ.arrayDiff([1, 2, 3], [2, 1])).to.deep.equal([3])
+    chai.expect(MJ.arrayDiff([false, true], ['a', 'b'])).to.have.members([false, true])    
+  })
+})
+
+describe('arrayUnion', function() {
+  it('should return a union of all the arrays passed as arguments in a single array', function() {
+    chai.expect(MJ.arrayUnion([1], [2, [3]])).to.deep.equal([1, 2, [3]])
+    chai.expect(MJ.arrayUnion([], [2, 3])).to.deep.equal([2, 3])
+    chai.expect(MJ.arrayUnion([], [])).to.deep.equal([])
+    chai.expect(MJ.arrayUnion([2, 2, 2], [1, 1, 1])).to.deep.equal([2, 2, 2, 1, 1, 1])
+  })
+})
+
+describe('arraySort', function() {
+  it('should return a sorted array', function() {
+    chai.expect(MJ.arraySort([1, 1, 1])).to.deep.equal([1, 1, 1])
+    chai.expect(MJ.arraySort([1111, 11, 11111, 1, 111])).to.deep.equal([1, 11, 111, 1111, 11111])
+    chai.expect(MJ.arraySort([1111, 11, 11111, 1, 111], false)).to.deep.equal([11111, 1111, 111, 11, 1])
+    chai.expect(MJ.arraySort([false, 'a', true, 1, 0])).to.have.members([false, 'a', true, 0, 1])
+    chai.expect(MJ.arraySort([])).to.deep.equal([])
+    chai.expect(MJ.arraySort(['z', 'g', 'b', 'm'])).to.have.members(['b', 'g', 'm', 'z'])   // sorts strings also
+    // chai.expect(MJ.arraySort([undefined, NaN, false, 1, true, 0])).to.have.members([0, NaN, false, 1, true, undefined])
+  })
+})
+
+/*
 describe('arrayDuplicates', function() {
   it('should return an array of all duplicate elements in a given array', function() {
 
   })
 })
 
-/*
 describe('arrayDuplicates', function() {
   it('should return ...', function() {
     

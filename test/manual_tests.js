@@ -37,55 +37,6 @@ function test2(result, expected) {
 }
 
 
-console.log('-------------------', 'isPrime');
-// is prime
-test(MJ.isPrime, 1, true)
-test(MJ.isPrime, 0, false)
-test(MJ.isPrime, -1, true)
-test(MJ.isPrime, 13, true)
-test(MJ.isPrime, 1951241521, false)
-test(MJ.isPrime, "19512415213", true)
-test(MJ.isPrime, ["1951241", 5213], false)
-
-console.log('-------------------', 'arrayFlatten');
-// arrayFlatten
-test(MJ.arrayFlatten, [1, [2, 3, [4, 5], [6]], [7, 8], 9], [1, 2, 3, 4, 5, 6, 7, 8, 9])
-test(MJ.arrayFlatten, [[[1]]], [1])
-test(MJ.arrayFlatten, [[[]]], [])
-// test(MJ.arrayFlatten, {}, false)  // should throw type error
-
-
-console.log('-------------------', 'arrayUnique');
-// arrayUnique
-test(MJ.arrayUnique, [undefined, undefined], [undefined])
-test(MJ.arrayUnique, ['a', '1'], ['a', '1'])
-test(MJ.arrayUnique, ['a', '1', 1, false, 0, true, true], ['a', '1', 1, false, 0, true])
-test(MJ.arrayUnique, [], [])
-// test(MJ.arrayUnique, {}, false)   // should throw type error
-
-
-console.log('-------------------', 'arrayEqual');
-// arrayEqual
-test2(MJ.arrayEqual([], []), true)
-test2(MJ.arrayEqual([1, '1'], ['1', 1]), false)
-test2(MJ.arrayEqual([1, '1'], [1, '1']), true)
-test2(MJ.arrayEqual(['1'], [1]), false)
-
-
-console.log('-------------------', 'arrayDiff');
-// arrayDiff
-test2(MJ.arrayDiff([], []), [])
-test2(MJ.arrayDiff([1, 2], [2, 1]), [])
-test2(MJ.arrayDiff([1, 2, 3], [2, 1]), [3])
-test2(MJ.arrayDiff([false, true], ['a', 'b']), [false, true])
-
-
-console.log('-------------------', 'arrayUnion');
-// arrayUnion
-test2(MJ.arrayUnion([1], [2, [3]]), [1, 2, [3]])
-test2(MJ.arrayUnion([], [2, 3]), [2, 3])
-test2(MJ.arrayUnion([], []), [])
-test2(MJ.arrayUnion([2, 2, 2], [1, 1, 1]), [2, 2, 2, 1, 1, 1])
 
 
 console.log('-------------------', 'arrayHasDuplicates');

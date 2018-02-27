@@ -1,4 +1,4 @@
-export default function arrayDiff(arr1, arr2) {
+export function arrayDiff(arr1, arr2) {
   /* a - b = returns elements that exist a but not in b. */
   var toReturn = []
   arr1.filter(function(val, index) {
