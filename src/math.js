@@ -7,11 +7,13 @@ export {square, cube, power} from './exponent'
 export {isPrime} from './prime'
 export {remainder} from './remainder'
 export {titleCase} from './str_titlecase'
+
+/* Array Functions */
 export {arrayFlatten} from './arr_flatten'
 export {arrayUnique} from './arr_unique'
 export {arrayDiff} from './arr_diff'
 export {arrayUnion} from './arr_union'
 export {arraySort} from './arr_sort'
-// export {arrayGetDuplicates} from './arr_duplicates'
-// export {arrayHasDuplicates} from './arr_duplicates'
-
+export {arrayGenerateRandom} from './arr_random'
+export {arrRandomElem} from './arr_random'
+export {arrayShuffle} from './arr_random'

@@ -6,19 +6,21 @@ export function arrRandomElem(arr) {
   }
 }
 
-export function arrayRandom(len, min, max, unique) {
+export function arrayGenerateRandom(len, min, max, unique, inclusive) {
   /* Creates an array of random integers between the range specified */
-  min = (min) ? min : 1
+  min = (min) ? Math.ceil(min) : 1
   len = (len) ? len : 10
-  max = (max) ? max : 100
+  max = (max) ? Math.floor(max) : 100
   unique = (unique) ? unique : false
+  inclusive = (inclusive) ? inclusive : false
+  var inc_int = (inclusive === true) ? 1 : 0
   var toReturn = [],
       _cache = {},
       i = 0
 
   if (unique === true) {
     for (; i < len; i++) {
-      var randomInt = Math.floor(Math.random() * ((max - min) + min))
+      var randomInt = Math.floor(Math.random() * (max - min + inc_int) + min)
       if (_cache['key_' + randomInt] === undefined) {
         _cache['key_' + randomInt] = randomInt
         toReturn.push(randomInt)
@@ -28,7 +30,7 @@ export function arrayRandom(len, min, max, unique) {
     }
   } else {
     for (; i < len; i++) {
-      toReturn.push(Math.floor(Math.random() * ((max - min) + min)))
+      toReturn.push(Math.floor(Math.random() * (max - min + inc_int) + min))
     }
   }
   return toReturn

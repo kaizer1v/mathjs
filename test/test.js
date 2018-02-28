@@ -118,13 +118,14 @@ describe('arraySort', function() {
   })
 })
 
-/*
-describe('arrayDuplicates', function() {
-  it('should return an array of all duplicate elements in a given array', function() {
-
+describe('arrayGenerateRandom', function() {
+  it('should return an array of random integers between a range', function() {
+    var random_arr = MJ.arrayGenerateRandom(5, 300, 350)
+    chai.expect(random_arr).to.have.lengthOf(5)
   })
 })
 
+/*
 describe('arrayDuplicates', function() {
   it('should return ...', function() {
     
