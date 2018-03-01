@@ -1,13 +1,9 @@
-import './absolute'
-import './mean'
+import {absolute} from './absolute'
+import {mean} from './mean'
 
 export const sqrt = (function() {
   // private
   var tolerance = 0.0001
-
-  function improve(guess, x) {
-    return mean(guess, (x / guess))
-  }
 
   function square(n) {
     if (n.constructor === Number && !n.hasOwnProperty('square')) return n * n

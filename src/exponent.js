@@ -13,7 +13,7 @@ export function cube(n) {
 
 export function power(n, _of) {
   if(n.constructor !== Number && _of.constructor !== Number) throw TypeError('Type has to be a number only')
-  if(_of  <  0) return sqrt(n, absolute(_of))
+  if(_of  <  0) throw TypeError('Exponent can only be a positive number')
   if(_of === 0) return 1
   if(_of === 1) return n
   if(_of === 2) return square(n)
