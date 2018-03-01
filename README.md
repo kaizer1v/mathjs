@@ -39,10 +39,10 @@ MJ.arrayDiff([1, 2, 3, 4], [1, 4, 2])
 There functionalities are segrated by primarily three sections
 
 1. Array Functionalities
-2. Numberic Functionalities
+2. Numeric Functionalities
 3. String Functionalities
 
-## Arrays
+## Array Functionalities
 
 List of Functions that you can operate on Arrays
 
@@ -107,7 +107,7 @@ MJ.arrayMean([1, 2, 3, 100, 101, 202])
 ```
 
 
-## Numberic
+## Numeric Functionalities
 
 List of Functions that you can operate on Numbers
 
@@ -157,7 +157,24 @@ MJ.remainder(10, 4)
 // 2
 ```
 
-## Strings
+### power
+
+Returns the exponent value of a number.
+
+```javascript
+MJ.power(2, 5)
+// 32
+
+// you can also directly get the `square` or the `cube`
+MJ.square(2)
+// 4
+
+MJ.cube(2)
+// 8
+```
+
+
+## String Functionalities
 
 List of Functions that you can operate on Strings
 
