@@ -1,4 +1,8 @@
 # MathJs
+------
+
+- [Official Website](http://kaizer1v.github.io/mathjs/)
+- [Source Code](https://github.com/kaizer1v/mathjs)
 
 MathJs is a small javascript library for performing mundane tasks repeatedly
 in a easy way. A few of the things that this library is capable of are operations like, 
