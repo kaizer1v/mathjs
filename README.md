@@ -97,8 +97,6 @@ MJ.arrayUnion([1], [], [2])
 // [1, 2]
 ```
 
-### 
-
 ### arrayMean
 
 Given an array of numbers, computes the mean and returns it.
@@ -106,6 +104,70 @@ Given an array of numbers, computes the mean and returns it.
 ```javascript
 MJ.arrayMean([1, 2, 3, 100, 101, 202])
 // 68.16666666666667
+```
+
+
+## Numberic
+
+List of Functions that you can operate on Numbers
+
+### round
+
+Given a `long` type number, you can round it off to how many ever
+decimal places you want to
+
+```javascript
+MJ.round(3.14159265, 3)
+// 3.141
+```
+
+### factorial
+
+Returns the factorial for a number
+
+```javascript
+MJ.factorial(5)
+// 120
+```
+
+### factors
+
+Get the prime factors for a number
+
+```javascript
+MJ.factors(10)
+// [1, 10, 2, 5]
+```
+
+### isPrime
+
+Checks whether a given number is prime or not
+
+```javascript
+MJ.isPrime(5)
+// true
+```
+
+### remainder
+
+Returns the remainder when a numerator is divided by a denominator
+
+```javascript
+MJ.remainder(10, 4)
+// 2
+```
+
+## Strings
+
+List of Functions that you can operate on Strings
+
+### titleCase
+
+Convert a string to titlecase.
+
+```javascript
+MJ.titleCase(' abC dEf')
+// Abc Def
 ```
 
 
