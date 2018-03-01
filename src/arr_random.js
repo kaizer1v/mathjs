@@ -17,7 +17,11 @@ export function arrayGenerateRandom(len, min, max, unique, inclusive) {
   var toReturn = [],
       _cache = {},
       i = 0
-
+  if(min >= max) {
+    var temp = min
+    min = max
+    max = temp
+  }
   if (unique === true) {
     for (; i < len; i++) {
       var randomInt = Math.floor(Math.random() * (max - min + inc_int) + min)

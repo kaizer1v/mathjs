@@ -1,7 +1,7 @@
 import './absolute'
 import './mean'
 
-export var sqrt = (function() {
+export const sqrt = (function() {
   // private
   var tolerance = 0.0001
 

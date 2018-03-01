@@ -43,6 +43,25 @@ describe('remainder', function() {
   })
 })
 
+describe('exponent', function() {
+  it('should return the value for x^y', function() {
+    chai.expect(MJ.power(2, 2)).to.deep.equal(4)
+    chai.expect(MJ.power(2, 0)).to.deep.equal(1)
+    // chai.expect(MJ.power(16, -2)).to.deep.equal(4)
+  })
+})
+
+describe('round', function() {
+  it('should a rounded decimal number based on the number of decimals you want', function() {
+    chai.expect(MJ.round(3.14159265359)).to.deep.equal(3.14)
+    chai.expect(MJ.round(3.14159265359, 2)).to.deep.equal(3.14)
+    chai.expect(MJ.round(3.14159265359, 6)).to.deep.equal(3.141593)
+    chai.expect(MJ.round(3.14159265359, 0)).to.deep.equal(3.14)
+    chai.expect(MJ.round(3.14159265359, 1)).to.deep.equal(3.1)
+    chai.expect(MJ.round(31415, 2)).to.deep.equal(31415)
+  })
+})
+
 describe('arrayUnique', function() {
   it('should return an array of unique elements in it', function() {
     assert.deepEqual(MJ.arrayUnique([]), [])
@@ -120,8 +139,11 @@ describe('arraySort', function() {
 
 describe('arrayGenerateRandom', function() {
   it('should return an array of random integers between a range', function() {
-    var random_arr = MJ.arrayGenerateRandom(5, 300, 350)
-    chai.expect(random_arr).to.have.lengthOf(5)
+    var arr_within_range = MJ.arrayGenerateRandom(5, 300, 350)
+    var arr_unique_inclusive = MJ.arrayGenerateRandom(5, 1, 5, true, true)
+    chai.expect(arr_within_range).to.have.lengthOf(5)
+    chai.expect(arr_unique_inclusive).to.have.lengthOf(5)
+    chai.expect(arr_unique_inclusive).to.have.members([1, 2, 3, 4, 5])
   })
 })
 

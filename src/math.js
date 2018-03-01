@@ -7,6 +7,7 @@ export {square, cube, power} from './exponent'
 export {isPrime} from './prime'
 export {remainder} from './remainder'
 export {titleCase} from './str_titlecase'
+export {round} from './round'
 
 /* Array Functions */
 export {arrayFlatten} from './arr_flatten'
