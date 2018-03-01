@@ -23,3 +23,5 @@ export {arraySort} from './arr_sort'
 export {arrayGenerateRandom,
         arrRandomElem,
         arrayShuffle} from './arr_random'
+export {arrayIntersection} from './arr_intersection'
+        

@@ -116,6 +116,16 @@ describe('arrayDiff', function() {
   })
 })
 
+describe('arrayIntersection', function() {
+  it('should return an array of elements which are present in the left but not in right', function() {
+    chai.expect(MJ.arrayIntersection([], [])).to.deep.equal([])
+    chai.expect(MJ.arrayIntersection([1, 2], [2, 1])).to.have.members([1, 2])
+    chai.expect(MJ.arrayIntersection([1, 2, 3], [2, 1])).to.have.members([1, 2])
+    chai.expect(MJ.arrayIntersection([1, 2, 3, 2], [2, 1, 1])).to.have.members([1, 2])
+    chai.expect(MJ.arrayIntersection([false, true], ['a', 'b'])).to.deep.equal([])   
+  })
+})
+
 describe('arrayUnion', function() {
   it('should return a union of all the arrays passed as arguments in a single array', function() {
     chai.expect(MJ.arrayUnion([1], [2, [3]])).to.deep.equal([1, 2, [3]])

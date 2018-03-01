@@ -1,16 +1,42 @@
 # MathJs
 
-MathJs is a small javascript library for performing set theory and basic mathematical functions on numbers and arrays.
+MathJs is a small javascript library for performing mundane tasks repeatedly
+in a easy way. A few of the things that this library is capable of are operations like, 
+`round`ing a decimal upto 2 decimal places, or trying to find the `difference` between
+two arrays.
 
-### Usage
+Read on to find out more features about this library.
 
-Simply include the mathjs.js file into your html
-```html
-<script type="text/javascript" src="mathjs.js"></script>
-<script type="text/javascript">
-  MJ.isPrime(0);    // false
-</script>
+## Download
+
+You can download this library as an npm module by running the following command
+
+```sh
+npm install simplemathjs
 ```
+
+Once downloaded, you can include in your html file like so
+
+```html
+<script type="text/javascript" src="node_modules/dist/math.min.js"></script>
+```
+
+That's it, you can now use this library by referring to the `MJ` variable
+within your javascript
+
+```javascript
+MJ.round(3.14159265, 2)
+// 3.14
+
+MJ.arrayDiff([1, 2, 3, 4], [1, 4, 2])
+// [3]
+```
+
+There functionalities are segrated by primarily three sections
+
+1. Array Functionalities
+2. Numberic Functionalities
+3. String Functionalities
 
 ## Arrays
 
@@ -35,16 +61,14 @@ MJ.arrayUnique([1, 1, 'b', false, false, true, 'b', undefined, undefined])
 // [1, "b", false, true, undefined]
 ```
 
-### arrayEqual
+### arrayIntersection
 
-Given two set of arrays, returns true if both arrays are exactly the same, else
-returns false.
+Given two sets of arrays, returns the set of unique elements which are present in
+both
 
 ```javascript
-MJ.arrayEqual([1, 123, false], ["1", 123, false])
-// false, where as
-MJ.arrayEqual([1, 123, false], [1, 123, false])
-// will return true
+MJ.arrayIntersection([1, 2, 3, 2], [1, 5, 2, 1])
+// [1, 2]
 ```
 
 ### arrayDiff
@@ -54,7 +78,7 @@ in the right.
 
 ```javascript
 MJ.arrayDiff([1, 2, 3, 4], [1, 4, 2])
-// left - right i.e. 3
+// [3]
 MJ.arrayDiff([1, 423, 64], [1, 64, 23, 521, 423])
 // [] since there are no elements on the left which are NOT present on the right
 ```
@@ -73,34 +97,6 @@ MJ.arrayUnion([1], [], [2])
 // [1, 2]
 ```
 
-
-### arrayHasDuplicates
-
-Given a single array and an element to check duplicate for, the function returns `true` or `false`
-based on whether there exists more than one occurance of that element within the array.
-
-```javascript
-MJ.arrayHasDuplicates([1, 4, 53, 4, 1], 1)
-// true since 1 occurs more than once
-MJ.arrayHasDuplicates([1, 4, 53, 4, 1], 53)
-// false, since 53 does not occur more than once
-MJ.arrayHasDuplicates([1, 4, 53, 4, 1], 21)
-// false, since 21 does not occur more than once
-```
-
-### arrayGetDuplicates
-
-Given an array, this function will return all the elements which occur more than once
-within the array i.e. duplicates
-
-```javascript
-MJ.arrayGetDuplicates([1, 1, 1])
-// [1]
-MJ.arrayGetDuplicates([1, 1, 1, 51, 51, 2])
-// [1, 51]
-```
-
-
 ### arrayMean
 
 Given an array of numbers, 
@@ -113,14 +109,4 @@ MJ.arrayMean([false, 'abc'])
 // NaN
 ```
 
-### arrayEqual
 
-Given two set of arrays, returns true if both arrays are exactly the same, else
-returns false.
-
-```javascript
-MJ.arrayEqual([1, 123, false], ["1", 123, false])
-// returns false, where as
-MJ.arrayEqual([1, 123, false], [1, 123, false])
-// will return true
-```
