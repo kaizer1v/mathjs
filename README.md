@@ -83,8 +83,6 @@ in the right.
 ```javascript
 MJ.arrayDiff([1, 2, 3, 4], [1, 4, 2])
 // [3]
-MJ.arrayDiff([1, 423, 64], [1, 64, 23, 521, 423])
-// [] since there are no elements on the left which are NOT present on the right
 ```
 
 ### arrayUnion
@@ -95,11 +93,11 @@ present in every argument, including duplicates.
 *NOTE: the arguments for the function always need to be an array*
 
 ```javascript
-MJ.arrayUnion([1, 5, 5], [2, [2, false], 'abc'], [true, ['another', 5.15], undefined, null])
-// [1, 5, 5, 2, [2, false], "abc", true, ['another', 5.15], undefined, null]
 MJ.arrayUnion([1], [], [2])
 // [1, 2]
 ```
+
+### 
 
 ### arrayMean
 
@@ -108,9 +106,6 @@ Given an array of numbers,
 ```javascript
 MJ.arrayMean([1, 2, 3, 100, 101, 202])
 // 68.16666666666667
-
-MJ.arrayMean([false, 'abc'])
-// NaN
 ```
 
 
