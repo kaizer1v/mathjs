@@ -12,3 +12,6 @@
   - `arrayIntersection`
   - Variable swapping using `swap`
   - Efficiency in `exponent` functions
+
+- 1.2.1
+  - `arrayMin` and `arrayMax`
