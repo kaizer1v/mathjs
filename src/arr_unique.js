@@ -1,5 +1,5 @@
 export function arrayUnique(arr) {
- /* returns all unique elements in the
+  /* returns all unique elements in the
     array i.e. that doesn't exist more than once.
   */
   if (arr.constructor !== Array) throw TypeError('Type should be an array only')

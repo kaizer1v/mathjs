@@ -5,8 +5,8 @@ export {sqrt} from './sqrt'
 export {factorial} from './factorial'
 export {factors} from './factors'
 export {square,
-        cube,
-        power} from './exponent'
+  cube,
+  power} from './exponent'
 export {isPrime} from './prime'
 export {remainder} from './remainder'
 export {round} from './round'
@@ -15,13 +15,15 @@ export {round} from './round'
 export {titleCase} from './str_titlecase'
 
 /* Array Functions */
+export {arrayMin} from './arr_min'
+export {arrayMax} from './arr_max'
 export {arrayFlatten} from './arr_flatten'
 export {arrayUnique} from './arr_unique'
 export {arrayDiff} from './arr_diff'
 export {arrayUnion} from './arr_union'
 export {arraySort} from './arr_sort'
 export {arrayGenerateRandom,
-        arrRandomElem,
-        arrayShuffle} from './arr_random'
+  arrRandomElem,
+  arrayShuffle} from './arr_random'
 export {arrayIntersection} from './arr_intersection'
         

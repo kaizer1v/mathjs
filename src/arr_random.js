@@ -6,7 +6,7 @@ export function arrRandomElem(arr) {
   }
 }
 
-export function arrayGenerateRandom(len, min, max, unique, inclusive) {
+export function arrayGenerateRandom(len=10, min=1, max=100, unique=false, inclusive=true) {
   /* Creates an array of random integers between the range specified */
   min = (min) ? Math.ceil(min) : 1
   len = (len) ? len : 10
@@ -15,8 +15,8 @@ export function arrayGenerateRandom(len, min, max, unique, inclusive) {
   inclusive = (inclusive) ? inclusive : false
   var inc_int = (inclusive === true) ? 1 : 0
   var toReturn = [],
-      _cache = {},
-      i = 0
+    _cache = {},
+    i = 0
   if(min >= max) {
     var temp = min
     min = max
