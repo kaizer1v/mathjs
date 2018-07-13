@@ -8,7 +8,7 @@ export function arraysEqual(arr1, arr2) {
 }
 
 export function arraysDeepEqual(arr1, arr2) {
- /* returns if two arrays are exactly the same along with their
+  /* returns if two arrays are exactly the same along with their
     data types or not.
   */
   if (arr1.length !== arr2.length) return false

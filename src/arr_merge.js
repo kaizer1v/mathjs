@@ -8,3 +8,9 @@ function arrayMerge() {
   })
   return arrayUnique(arrayFlatten(_arr))
 }
+
+
+function newArrayMerge(...arrs) {
+  let _arr = []
+  for()
+}

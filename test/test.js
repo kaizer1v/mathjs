@@ -17,9 +17,11 @@ var MJ = require('../dist/math.js')
   throws: [Function: throws],
   doesNotThrow: [Function: doesNotThrow],
   ifError: [Function: ifError] }
-
-  console.log(chai)
 */
+
+function test_error() {
+  throw TypeError('Type should be an array only');
+}
 
 describe('titleCase', function() {
   it('should convert to title case for any caseType', function() {
@@ -157,13 +159,21 @@ describe('arrayGenerateRandom', function() {
   })
 })
 
-/*
-describe('arrayDuplicates', function() {
-  it('should return ...', function() {
-    
+describe('arrayMax', function() {
+  it('should return max element from the array', function() {
+    chai.expect(MJ.arrayMax([1, 2, 3, 4])).to.deep.equal(4)
+    chai.expect(MJ.arrayMax([0, 0])).to.deep.equal(0)
   })
 })
 
+describe('arrayMin', function() {
+  it('should return min element from the array', function() {
+    chai.expect(MJ.arrayMin([1, 2, 3, 4])).to.deep.equal(1)
+    chai.expect(MJ.arrayMin([0, 0])).to.deep.equal(0)
+  })
+})
+
+/*
 describe('arrayDuplicates', function() {
   it('should return ...', function() {
     
